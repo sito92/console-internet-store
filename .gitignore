@@ -7,8 +7,7 @@
 *.sln.docstates
 
 # Build results
-bin/
-obj/
+
 [Dd]ebug/
 [Rr]elease/
 x64/
@@ -155,3 +154,4 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+*.config

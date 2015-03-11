@@ -1,9 +1,0 @@
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\CarAndHorseStore.exe.config
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\obj\Debug\CarAndHorseStore.exe
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\obj\Debug\CarAndHorseStore.pdb
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\CarAndHorseStore.exe
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\CarAndHorseStore.pdb
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\EntityFramework.dll
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\EntityFramework.SqlServer.dll
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\EntityFramework.xml
-e:\Projekty\StrzelczykSVN\Stelmach\CarAndHorseStore\bin\Debug\EntityFramework.SqlServer.xml

@@ -6,7 +6,7 @@ namespace CarAndHorseStore
     {
         static void Main(string[] args)
         {
-            
+            var test = 5;
         }
     }
 }

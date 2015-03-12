@@ -4,34 +4,21 @@ using System.Linq;
 using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
 using CarAndHorseStore;
-using CarAndHorseStore.Interfaces;
+using CarAndHorseStore.Models;
 
 
 namespace CarAndHorseStore.Core.System
 {
     public class StoreSystem : IStoreSystem
     {
-        private List<IUser> loggedUSers; 
-        public void StartSystem()
-        {
-            throw new NotImplementedException();
-        }
+        private List<UserBase> loggedUSers; 
+      
 
-        public void StopSystem()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DoAction()
-        {
-           
-        }
-
-        public void LogInUser(IUser user)
+        public void LogInUser(UserBase user)
         {
             loggedUSers.Add(user);
             //dodaj user do zalogowanych
         }
-        
+
     }
 }

@@ -5,12 +5,15 @@ using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
 using CarAndHorseStore.Core.System;
 using CarAndHorseStore.Interfaces;
+using CarAndHorseStore.Models;
 
 namespace CarAndHorseStore.Core.CommandParser
 {
     class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
+
+        //private IRepository rep;
 
 
 
@@ -35,9 +38,10 @@ namespace CarAndHorseStore.Core.CommandParser
         }
 
 
-        public  string LogIn(string parameters)
+        private  string LogIn(string parameters)
         {
-            IUser user = null;
+            
+            //var = rep.GetUser();
             //TODO Logiga logowania
             //storeSystem.LogInUser(user);
             return "Zalogowano pomyślnie";

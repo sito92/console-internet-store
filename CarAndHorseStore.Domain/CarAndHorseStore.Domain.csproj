@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6B44D92B-39F0-4401-89E1-DE0B3E027470}</ProjectGuid>
+    <ProjectGuid>{2BB3C695-5817-405B-BB2B-5F8473613546}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarAndHorseStore.Core</RootNamespace>
-    <AssemblyName>CarAndHorseStore.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>CarAndHorseStore.Domain</RootNamespace>
+    <AssemblyName>CarAndHorseStore.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,10 +28,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\CarAndHorseStore\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\CarAndHorseStore\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,18 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandParser\Abstract\ICommandParser.cs" />
-    <Compile Include="CommandParser\CommandParser.cs" />
-    <Compile Include="CommandParser\CommandsFactory.cs" />
+    <Compile Include="Interfaces\IProduct.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Models\BodyType.cs" />
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Breed.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Color.cs" />
+    <Compile Include="Models\EngineType.cs" />
+    <Compile Include="Models\Horse.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\ProductList.cs" />
+    <Compile Include="Models\Sex.cs" />
+    <Compile Include="Models\UserBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\Abstract\IStoreSystem.cs" />
-    <Compile Include="System\StoreSystem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarAndHorseStore.Domain\CarAndHorseStore.Domain.csproj">
-      <Project>{2bb3c695-5817-405b-bb2b-5f8473613546}</Project>
-      <Name>CarAndHorseStore.Domain</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

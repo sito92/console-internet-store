@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
+using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.System;
 using CarAndHorseStore.Interfaces;
 using CarAndHorseStore.Models;
 
 namespace CarAndHorseStore.Core.CommandParser
 {
-    class CommandParser : ICommandParser
+    public class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
 
@@ -23,9 +24,9 @@ namespace CarAndHorseStore.Core.CommandParser
 
         public CommandParser()
         {
-            comandsDictionary.Add("line",LogIn);
+            comandsDictionary.Add("login",LogIn);
         }
-        public void ParseCommand(string command)
+        public string ParseCommand(string command)
         {
             //TODO logika wyciągania parametrów
             var commandArray = command.Split(' ');
@@ -34,7 +35,7 @@ namespace CarAndHorseStore.Core.CommandParser
             var parameters = "";
 
 
-            comandsDictionary[command](parameters);
+            return comandsDictionary[command](parameters);
         }
 
 
@@ -44,7 +45,7 @@ namespace CarAndHorseStore.Core.CommandParser
             //var = rep.GetUser();
             //TODO Logiga logowania
             //storeSystem.LogInUser(user);
-            return "Zalogowano pomyślnie";
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccpted);
         }
     }
 }

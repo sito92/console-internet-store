@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using CarAndHorseStore.Core.CommandParser;
+using CarAndHorseStore.Core.System;
 
 namespace CarAndHorseStore
 {
@@ -7,7 +9,14 @@ namespace CarAndHorseStore
     {
         static void Main(string[] args)
         {
-            //var storeSystem = new
+            var storeSystem = new StoreSystem();
+            var commandParser = new CommandParser();
+
+
+            while (true)
+            {
+                Console.WriteLine(commandParser.ParseCommand(Console.ReadLine()));
+            }
 
         }
     }

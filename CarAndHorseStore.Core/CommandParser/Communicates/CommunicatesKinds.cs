@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarAndHorseStore.Core.CommandParser.Communicates
 {
-    class CommunicatesKinds
+    enum CommunicatesKinds
     {
+        LoginAccpted,
+        LoginFailed
     }
 }

@@ -6,11 +6,12 @@ using CarAndHorseStore.Core.CommandParser.Abstract;
 using CarAndHorseStore;
 using CarAndHorseStore.Interfaces;
 
+
 namespace CarAndHorseStore.Core.System
 {
     public class StoreSystem : IStoreSystem
     {
-        private ICommandParser commandParser;
+        private List<IUser> loggedUSers; 
         public void StartSystem()
         {
             throw new NotImplementedException();
@@ -23,11 +24,12 @@ namespace CarAndHorseStore.Core.System
 
         public void DoAction()
         {
-            throw new NotImplementedException();
+           
         }
 
         public void LogInUser(IUser user)
         {
+            loggedUSers.Add(user);
             //dodaj user do zalogowanych
         }
         

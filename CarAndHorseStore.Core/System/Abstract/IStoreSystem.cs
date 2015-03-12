@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CarAndHorseStore.Core.System
 {
-    interface IStoreSystem
+    public interface IStoreSystem
     {
         void StartSystem();
         void StopSystem();

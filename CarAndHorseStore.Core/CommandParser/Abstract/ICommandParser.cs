@@ -7,6 +7,6 @@ namespace CarAndHorseStore.Core.CommandParser.Abstract
 {
     public interface ICommandParser
     {
-
+        void ParseCommand(string command );
     }
 }

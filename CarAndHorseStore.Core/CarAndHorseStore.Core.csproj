@@ -39,8 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandParser\Abstract\ICommandParser.cs" />
+    <Compile Include="CommandParser\CommandParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Abstract\IStoreSystem.cs" />
     <Compile Include="System\StoreSystem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarAndHorseStore\CarAndHorseStore.csproj">
+      <Project>{158324ae-dfe5-4af7-bb3a-b8cc12cea539}</Project>
+      <Name>CarAndHorseStore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

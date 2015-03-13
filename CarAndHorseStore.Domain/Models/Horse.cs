@@ -1,21 +1,18 @@
 ﻿using System.Data.Entity;
 
-namespace CarAndHorseStore.Models
+namespace CarAndHorseStore.Domain.Models
 {
     public class Horse
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
-        public int ID { get; set; }
-    }
 
-    public class HorseContext : DbContext
-    {
-        public HorseContext()
-            : base("DatabaseConnectionString")
-        {
-            
-        }
+        public Breed Breed { get; set; }
 
-        public DbSet<Horse> Horses { get; set; }
+        public Color Color { get; set; }
+
+        public Sex Sex { get; set; }
+
     }
 }

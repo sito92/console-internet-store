@@ -1,6 +1,8 @@
-﻿namespace CarAndHorseStore.Models
+﻿using CarAndHorseStore.Domain.Interfaces;
+
+namespace CarAndHorseStore.Domain.Models
 {
-    public class UserBase //+IUser
+    public class UserBase : IUser
     {
         public int Id { get; set; }
 

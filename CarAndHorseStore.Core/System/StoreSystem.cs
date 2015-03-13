@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
 using CarAndHorseStore;
-using CarAndHorseStore.Models;
+using CarAndHorseStore.Core.System.Abstract;
+using CarAndHorseStore.Domain.Models;
 
 
 namespace CarAndHorseStore.Core.System

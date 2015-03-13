@@ -5,8 +5,7 @@ using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.System;
-using CarAndHorseStore.Interfaces;
-using CarAndHorseStore.Models;
+using CarAndHorseStore.Core.System.Abstract;
 
 namespace CarAndHorseStore.Core.CommandParser
 {

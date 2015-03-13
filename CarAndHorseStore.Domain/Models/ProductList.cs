@@ -1,10 +1,10 @@
-﻿namespace CarAndHorseStore.Models
+﻿namespace CarAndHorseStore.Domain.Models
 {
     public class ProductList
     {
         public int Id { get; set; }
 
-        //public Product Product { get; set; }
+        public Product Product { get; set; }
 
         public Order Order { get; set; }
 

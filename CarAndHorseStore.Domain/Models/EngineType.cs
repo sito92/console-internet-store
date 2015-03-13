@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarAndHorseStore.Models
+﻿namespace CarAndHorseStore.Domain.Models
 {
     public class EngineType
     {
         public int Id { get; set; }
-        public int Cylinfer_Amount { get; set; }
-        public float Engine_Capacity { get; set; }
+
+        public int CylinderAmount { get; set; }
+
+        public float EngineCapacity { get; set; }
     }
 }

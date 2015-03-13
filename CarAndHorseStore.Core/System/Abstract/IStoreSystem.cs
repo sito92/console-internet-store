@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CarAndHorseStore.Models;
+﻿using CarAndHorseStore.Domain.Models;
 
-namespace CarAndHorseStore.Core.System
+namespace CarAndHorseStore.Core.System.Abstract
 {
     public interface IStoreSystem
     {

@@ -2,10 +2,8 @@
 
 namespace CarAndHorseStore.Domain.Models
 {
-    public class Horse
+    public class Horse : Product
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public Breed Breed { get; set; }

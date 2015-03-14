@@ -5,13 +5,11 @@ using System.Text;
 
 namespace CarAndHorseStore.Domain.Models
 {
-    public class Car
+    public class Car : Product
     {
-        public int Id { get; set; }
+        public Brand Brand { get; set; }
 
         public BodyType BodyType { get; set; }
-
-        public Brand Brand { get; set; }
 
         public Color Color { get; set; }
 

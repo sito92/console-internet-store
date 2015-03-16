@@ -52,8 +52,11 @@
     <Compile Include="CommandParser\Abstract\ICommandParser.cs" />
     <Compile Include="CommandParser\CommandParser.cs" />
     <Compile Include="CommandParser\CommandsFactory.cs" />
+    <Compile Include="CommandParser\Commands\CommandStringExtension.cs" />
     <Compile Include="CommandParser\Communicates\CommunicatesFactory.cs" />
     <Compile Include="CommandParser\Communicates\CommunicatesKinds.cs" />
+    <Compile Include="CommandParser\Role\RoleFactory.cs" />
+    <Compile Include="CommandParser\Role\RoleKind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Abstract\IStoreSystem.cs" />
     <Compile Include="System\StoreSystem.cs" />
@@ -68,6 +71,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

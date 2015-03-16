@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
+using CarAndHorseStore.Core.CommandParser.Commands;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.System;
 using CarAndHorseStore.Core.System.Abstract;
@@ -17,8 +18,8 @@ namespace CarAndHorseStore.Core.CommandParser
 
 
 
-        private Dictionary<string, Func<string, string>> comandsDictionary = new Dictionary
-            <string, Func<string, string>>();
+        private Dictionary<string, Func<List<string>, string>> comandsDictionary = new Dictionary
+            <string, Func<List<string>, string>>();
             
 
         public CommandParser()
@@ -27,18 +28,14 @@ namespace CarAndHorseStore.Core.CommandParser
         }
         public string ParseCommand(string command)
         {
-            //TODO logika wyciągania parametrów
-            var commandArray = command.Split(' ');
-            var keyWord = commandArray.First();
+            var keyWord = command.GetKeyWord();
+            var parameters = command.GetParameters();
 
-            var parameters = "";
-
-
-            return comandsDictionary[command](parameters);
+            return comandsDictionary[keyWord](parameters);
         }
 
 
-        private  string LogIn(string parameters)
+        private  string LogIn(List<string> parameters)
         {
             
             //var = rep.GetUser();

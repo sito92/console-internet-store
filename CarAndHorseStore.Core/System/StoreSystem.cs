@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CarAndHorseStore.Core.CommandParser.Abstract;
 using CarAndHorseStore;
+using CarAndHorseStore.Core.CommandParser.Role;
 using CarAndHorseStore.Core.System.Abstract;
 using CarAndHorseStore.Domain.Models;
 
@@ -12,12 +13,13 @@ namespace CarAndHorseStore.Core.System
 {
     public class StoreSystem : IStoreSystem
     {
-        private List<UserBase> loggedUSers; 
+        private UserBase loggedUSer; 
       
 
         public void LogInUser(UserBase user)
         {
-            loggedUSers.Add(user);
+
+            loggedUSer = user;
             //dodaj user do zalogowanych
         }
 

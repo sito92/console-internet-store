@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CarAndHorseStore.Core.CommandParser;
 using CarAndHorseStore.Core.System;
 using CarAndHorseStore.Domain.Models;
@@ -16,6 +17,11 @@ namespace CarAndHorseStore
             bodyTypeRepository.SaveChanges();
             Console.ReadKey();
 
+            ShopDbContext context = new ShopDbContext();
+
+            Admin p = new Admin();
+            Console.WriteLine(p.GetType().Name);
+            Console.ReadKey();
         }
     }
 }

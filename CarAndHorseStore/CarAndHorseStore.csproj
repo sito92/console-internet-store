@@ -92,6 +92,10 @@
       <Project>{6b44d92b-39f0-4401-89e1-de0b3e027470}</Project>
       <Name>CarAndHorseStore.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarAndHorseStore.Domain\CarAndHorseStore.Domain.csproj">
+      <Project>{2bb3c695-5817-405b-bb2b-5f8473613546}</Project>
+      <Name>CarAndHorseStore.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

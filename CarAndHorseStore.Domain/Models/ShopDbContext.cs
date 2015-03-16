@@ -14,11 +14,10 @@ namespace CarAndHorseStore.Domain.Models
             
         }
 
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<UserBase> Users { get; set; }
         public DbSet<BodyType> BodyTypes { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Breed> Breeds { get; set; }
-        public DbSet<Client> Clients { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<EngineType> EngineTypes { get; set; }
         public DbSet<Order> Orders { get; set; }

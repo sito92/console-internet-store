@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using CarAndHorseStore.Core.CommandParser;
 using CarAndHorseStore.Core.System;
+using CarAndHorseStore.Domain.Models;
+using CarAndHorseStore.Domain.Repository;
 
 namespace CarAndHorseStore
 {
@@ -9,14 +11,10 @@ namespace CarAndHorseStore
     {
         static void Main(string[] args)
         {
-            var storeSystem = new StoreSystem();
-            var commandParser = new CommandParser();
-
-
-            while (true)
-            {
-                Console.WriteLine(commandParser.ParseCommand(Console.ReadLine()));
-            }
+            BodyTypeRepository bodyTypeRepository = new BodyTypeRepository();
+            bodyTypeRepository.Add(new BodyType(){Name = "Hatchback"});
+            bodyTypeRepository.SaveChanges();
+            Console.ReadKey();
 
         }
     }

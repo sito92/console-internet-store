@@ -5,6 +5,7 @@ using CarAndHorseStore.Core.CommandParser;
 using CarAndHorseStore.Core.System;
 using CarAndHorseStore.Domain.Models;
 using CarAndHorseStore.Domain.Repository;
+using CarAndHorseStore.Domain.Repository.Interfaces;
 
 namespace CarAndHorseStore
 {
@@ -12,16 +13,15 @@ namespace CarAndHorseStore
     {
         static void Main(string[] args)
         {
-            BodyTypeRepository bodyTypeRepository = new BodyTypeRepository();
-            bodyTypeRepository.Add(new BodyType(){Name = "Hatchback"});
-            bodyTypeRepository.SaveChanges();
-            Console.ReadKey();
+            IUserBaseRepository userBaseRepository= new UserBaseRepository();
+            var system = new StoreSystem(userBaseRepository);
 
-            ShopDbContext context = new ShopDbContext();
+            var commandPArser = new CommandParser(system);
 
-            Admin p = new Admin();
-            Console.WriteLine(p.GetType().Name);
-            Console.ReadKey();
+            while (true)
+            {
+                Console.WriteLine(commandPArser.ParseCommand(Console.ReadLine()));
+            }
         }
     }
 }

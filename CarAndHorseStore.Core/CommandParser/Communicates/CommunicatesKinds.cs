@@ -9,6 +9,8 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
     enum CommunicatesKinds
     {
         LoginAccpted,
-        LoginFailed
+        LoginFailed,
+        NotFoundLogin,
+        IncorrectPassword
     }
 }

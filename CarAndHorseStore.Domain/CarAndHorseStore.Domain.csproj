@@ -70,6 +70,8 @@
     <Compile Include="Repository\Interfaces\IBodyTypeRepository.cs" />
     <Compile Include="Repository\Interfaces\IHorseRepository.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserBaseRepository.cs" />
+    <Compile Include="Repository\UserBaseRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

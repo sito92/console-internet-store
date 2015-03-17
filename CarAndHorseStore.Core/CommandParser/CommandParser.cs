@@ -22,8 +22,9 @@ namespace CarAndHorseStore.Core.CommandParser
             <string, Func<List<string>, string>>();
             
 
-        public CommandParser()
+        public CommandParser(IStoreSystem system)
         {
+            storeSystem = system;
             comandsDictionary.Add("login",storeSystem.LogInUser);
         }
         public string ParseCommand(string command)

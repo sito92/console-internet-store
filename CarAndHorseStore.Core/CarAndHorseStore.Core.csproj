@@ -52,11 +52,12 @@
     <Compile Include="CommandParser\Abstract\ICommandParser.cs" />
     <Compile Include="CommandParser\CommandParser.cs" />
     <Compile Include="CommandParser\CommandsFactory.cs" />
+    <Compile Include="CommandParser\Commands\CommandParametersAmmount.cs" />
     <Compile Include="CommandParser\Commands\CommandStringExtension.cs" />
-    <Compile Include="CommandParser\Communicates\CommunicatesFactory.cs" />
-    <Compile Include="CommandParser\Communicates\CommunicatesKinds.cs" />
-    <Compile Include="CommandParser\Role\RoleFactory.cs" />
-    <Compile Include="CommandParser\Role\RoleKind.cs" />
+    <Compile Include="System\Communicates\CommunicatesFactory.cs" />
+    <Compile Include="System\Communicates\CommunicatesKinds.cs" />
+    <Compile Include="System\Role\RoleFactory.cs" />
+    <Compile Include="System\Role\RoleKind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Abstract\IStoreSystem.cs" />
     <Compile Include="System\StoreSystem.cs" />

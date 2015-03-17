@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CarAndHorseStore.Core.CommandParser.Abstract;
-using CarAndHorseStore;
-using CarAndHorseStore.Core.CommandParser.Role;
+﻿using System.Collections.Generic;
+using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.System.Abstract;
 using CarAndHorseStore.Domain.Models;
-
 
 namespace CarAndHorseStore.Core.System
 {
@@ -16,11 +10,12 @@ namespace CarAndHorseStore.Core.System
         private UserBase loggedUSer; 
       
 
-        public void LogInUser(UserBase user)
+        public string LogInUser(List<string> parameters )
         {
-
-            loggedUSer = user;
-            //dodaj user do zalogowanych
+            //TODO sprawdzanie parametrów
+           var login= parameters[1];
+            var password = parameters[2];
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccpted);
         }
 
     }

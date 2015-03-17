@@ -24,7 +24,7 @@ namespace CarAndHorseStore.Core.CommandParser
 
         public CommandParser()
         {
-            comandsDictionary.Add("login",LogIn);
+            comandsDictionary.Add("login",storeSystem.LogInUser);
         }
         public string ParseCommand(string command)
         {
@@ -32,16 +32,6 @@ namespace CarAndHorseStore.Core.CommandParser
             var parameters = command.GetParameters();
 
             return comandsDictionary[keyWord](parameters);
-        }
-
-
-        private  string LogIn(List<string> parameters)
-        {
-            
-            //var = rep.GetUser();
-            //TODO Logiga logowania
-            //storeSystem.LogInUser(user);
-            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccpted);
         }
     }
 }

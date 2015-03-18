@@ -11,12 +11,12 @@ namespace CarAndHorseStore.Core.CommandParser.Commands
         private const char commandDelimeter = ' ';
         public static List<string> GetParameters(this string command)
         {
-            return command.Split(commandDelimeter).Skip(1).ToList();
+            return command.Split(commandDelimeter).Skip(1).Where(x=>x!="").ToList();
         }
 
         public static string GetKeyWord(this string command)
         {
-            return command.Split(commandDelimeter).FirstOrDefault();
+            return command.Split(commandDelimeter).Where(x => x != "").FirstOrDefault();
         }
     }
 }

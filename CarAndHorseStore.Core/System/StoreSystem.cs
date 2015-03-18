@@ -25,11 +25,11 @@ namespace CarAndHorseStore.Core.System
 
             var user = userBaseRepository.GetUserByLogin(login);
 
-            if (user == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotFoundLogin);
+            if (user == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginNotFound);
             if (user.Password==password)
             {
                 loggedUSer = user;
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccpted);
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccepted);
             }
             else
             {

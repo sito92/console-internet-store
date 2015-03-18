@@ -12,7 +12,6 @@ namespace CarAndHorseStore.Core.CommandParser.Commands
         public Func<List<string>, string> commandDelegate { get; set; }
         public List<int> properParametersAmmount { get; set; }
 
-        public string keyWord { get; set; }
 
         public bool IsProperParametersAmmount(int parametersAmmount)
         {

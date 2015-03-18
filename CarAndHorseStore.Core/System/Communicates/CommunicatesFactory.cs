@@ -11,9 +11,19 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         private static Dictionary<Communicates.CommunicatesKinds, string> communicatesDictionary = new Dictionary
             <CommunicatesKinds, string>()
         {
-            {CommunicatesKinds.LoginAccpted, "Zalogowano pomyślnie"},
-            {CommunicatesKinds.NotFoundLogin, "Nie znaleziono podanego użytkownika"},
-             {CommunicatesKinds.IncorrectPassword, "Hasło nie prawidłowe"}
+            {CommunicatesKinds.LoginAccepted, "Zalogowano pomyślnie."},
+            {CommunicatesKinds.LoginFailed, "Wystąpił błąd podczas logowania."},
+            {CommunicatesKinds.LoginNotFound, "Nie znaleziono podanego użytkownika."},
+            {CommunicatesKinds.IncorrectPassword, "Hasło nie prawidłowe."},
+            {CommunicatesKinds.ProductNotFound,"Produkt o podanych parametrach nie istnieje."},
+            {CommunicatesKinds.ProductOutOfStock, "Aktualnie nie posiadamy wybranego produktu."},
+            {CommunicatesKinds.ProductAddedToList, "Dodano produkt do koszyka."},
+            {CommunicatesKinds.ProductNotAddedError, "Wystąpił błąd podczas dodawania do koszyka. Proszę spróbować ponownie."},
+            {CommunicatesKinds.ProductRemovedFromList, "Produkt został pomyślnie usunięty z koszyka."},
+            {CommunicatesKinds.ProductNotRemovedError, "Usunięcie z koszyka nie powiodło się. Proszę spróbować ponownie."},
+            {CommunicatesKinds.OrderIsInProgress, "Zamówienie zostało złożone i jest w trakcie realizacji."},
+            {CommunicatesKinds.OrderCancelled, "Zamówienie zostało anulowane."},
+            {CommunicatesKinds.LogoutFailed, "Wylogowanie nie powiodło się. Proszę spróbować ponownie."}
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)

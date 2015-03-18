@@ -8,9 +8,18 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
 {
     enum CommunicatesKinds
     {
-        LoginAccpted,
+        LoginAccepted,
         LoginFailed,
-        NotFoundLogin,
-        IncorrectPassword
+        LoginNotFound,
+        IncorrectPassword,
+        ProductNotFound,
+        ProductOutOfStock,
+        ProductAddedToList,
+        ProductNotAddedError,
+        ProductRemovedFromList,
+        ProductNotRemovedError,
+        OrderIsInProgress,
+        OrderCancelled, // potrzebne?
+        LogoutFailed //fantazja,co?
     }
 }

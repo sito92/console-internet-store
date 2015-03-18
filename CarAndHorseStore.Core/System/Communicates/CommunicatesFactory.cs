@@ -23,7 +23,8 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.ProductNotRemovedError, "Usunięcie z koszyka nie powiodło się. Proszę spróbować ponownie."},
             {CommunicatesKinds.OrderIsInProgress, "Zamówienie zostało złożone i jest w trakcie realizacji."},
             {CommunicatesKinds.OrderCancelled, "Zamówienie zostało anulowane."},
-            {CommunicatesKinds.LogoutFailed, "Wylogowanie nie powiodło się. Proszę spróbować ponownie."}
+            {CommunicatesKinds.LogoutFailed, "Wylogowanie nie powiodło się. Proszę spróbować ponownie."},
+            {CommunicatesKinds.IncorrectParametersAmmount, "Nie prawidłowaliczba parametrów"},
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)

@@ -6,6 +6,7 @@ namespace CarAndHorseStore.Core.System.Abstract
     public interface IStoreSystem
     {
          string LogInUser(List<string> parameters);
+         string WhoAmI(List<string> parameters);
 
     }
 }

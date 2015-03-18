@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Remoting.Lifetime;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.System.Abstract;
 using CarAndHorseStore.Domain.Models;
@@ -26,14 +27,21 @@ namespace CarAndHorseStore.Core.System
             var user = userBaseRepository.GetUserByLogin(login);
 
             if (user == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginNotFound);
-            if (user.Password==password)
+            if (user.Password != password)
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectPassword);
+            loggedUSer = user;
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccepted);
+        }
+
+        public string WhoAmI(List<string> parameters)
+        {
+            if (loggedUSer == null)
             {
-                loggedUSer = user;
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccepted);
+                return "Zalogowny jako " + loggedUSer.Name;
             }
             else
             {
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectPassword);
+                return "Nie jesteś zalogowany";
             }
         }
 

@@ -18,21 +18,23 @@ namespace CarAndHorseStore.Core.CommandParser
 
 
 
-        private Dictionary<string, Func<List<string>, string>> comandsDictionary = new Dictionary
-            <string, Func<List<string>, string>>();
+        private Dictionary<string, Command> comandsDictionary = new Dictionary
+            <string, Command>();
             
 
         public CommandParser(IStoreSystem system)
         {
             storeSystem = system;
-            comandsDictionary.Add("login",storeSystem.LogInUser);
+            comandsDictionary.Add("login",new Command(){commandDelegate = system.LogInUser,properParametersAmmount = new List<int>(){2}});
+            comandsDictionary.Add("whoami",new Command(){commandDelegate = system.WhoAmI,properParametersAmmount = new List<int>(){1,2}});
         }
         public string ParseCommand(string command)
         {
             var keyWord = command.GetKeyWord();
             var parameters = command.GetParameters();
 
-            return comandsDictionary[keyWord](parameters);
+            //TODO sprawdzenie czy komenda jest obsługiwana
+            return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count) ? comandsDictionary[keyWord].commandDelegate(parameters) : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
         }
     }
 }

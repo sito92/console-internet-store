@@ -34,7 +34,20 @@ namespace CarAndHorseStore.Core.CommandParser
             var parameters = command.GetParameters();
 
             //TODO sprawdzenie czy komenda jest obsługiwana
-            return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count) ? comandsDictionary[keyWord].commandDelegate(parameters) : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+            if (!IsCommandOperate(keyWord))
+            {
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
+            }
+
+                return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
+                    ? comandsDictionary[keyWord].commandDelegate(parameters)
+                    : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
         }
+
+        private bool IsCommandOperate(string keyword)
+        {
+            return comandsDictionary.ContainsKey(keyword);
+        }
+
     }
 }

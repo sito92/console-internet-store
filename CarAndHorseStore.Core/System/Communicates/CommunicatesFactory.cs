@@ -25,6 +25,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.OrderCancelled, "Zamówienie zostało anulowane."},
             {CommunicatesKinds.LogoutFailed, "Wylogowanie nie powiodło się. Proszę spróbować ponownie."},
             {CommunicatesKinds.IncorrectParametersAmmount, "Nie prawidłowaliczba parametrów"},
+            {CommunicatesKinds.CommandNotCooperate, "Komenda nie obsługiwana"}
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)

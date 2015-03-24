@@ -21,6 +21,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         OrderIsInProgress,
         OrderCancelled, // potrzebne?
         LogoutFailed, //fantazja,co?
-        IncorrectParametersAmmount
+        IncorrectParametersAmmount,
+        CommandNotCooperate
     }
 }

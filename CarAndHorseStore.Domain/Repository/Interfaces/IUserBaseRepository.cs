@@ -6,7 +6,7 @@ using CarAndHorseStore.Domain.Models;
 
 namespace CarAndHorseStore.Domain.Repository.Interfaces
 {
-    public interface IUserBaseRepository
+    public interface IUserBaseRepository : IRepository<UserBase>
     {
         UserBase GetUserByLogin(string login);
     }

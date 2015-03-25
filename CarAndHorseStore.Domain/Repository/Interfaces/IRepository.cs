@@ -14,5 +14,7 @@ namespace CarAndHorseStore.Domain.Repository.Interfaces
         void Delete(T element);
 
         void SaveChanges();
+
+        void Open();
     }
 }

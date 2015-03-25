@@ -6,8 +6,9 @@ using CarAndHorseStore.Domain.Models;
 
 namespace CarAndHorseStore.Domain.Repository.Interfaces
 {
-    public interface IProductRepository
+    public interface IProductRepository:IRepository<Product>
     {
+        
         IQueryable<Product> GetProductsByPrice(float price);
     }
 }

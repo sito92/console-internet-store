@@ -11,7 +11,7 @@ namespace CarAndHorseStore.Domain.Repository
         where T : class
         where C : DbContext, new()
     {
-        private C _entities = new C();
+        protected C _entities = new C();
 
         public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
@@ -32,6 +32,11 @@ namespace CarAndHorseStore.Domain.Repository
         public virtual void SaveChanges()
         {
             _entities.SaveChanges();
+        }
+
+        public void Open()
+        {
+            _entities.Database.Initialize(false);
         }
     }
 }

@@ -20,30 +20,54 @@ namespace CarAndHorseStore.Core.CommandParser
 
         private Dictionary<string, Command> comandsDictionary = new Dictionary
             <string, Command>();
-            
+
 
         public CommandParser(IStoreSystem system)
         {
             storeSystem = system;
-            comandsDictionary.Add("login",new Command(){commandDelegate = system.LogInUser,properParametersAmmount = new List<int>(){2}});
-            comandsDictionary.Add("whoami",new Command(){commandDelegate = system.WhoAmI,properParametersAmmount = new List<int>(){1,2}});
+            InitializeCommands();
         }
+
+        private void InitializeCommands()
+        {
+
+            comandsDictionary.Add("login",
+                new Command() { commandDelegate = storeSystem.LogInUser, properParametersAmmount = new List<int>() { 2 } });
+            comandsDictionary.Add("whoami",
+                new Command() { commandDelegate = storeSystem.WhoAmI, properParametersAmmount = new List<int>() { 1, 2 } });
+            comandsDictionary.Add("exit",
+                new Command() { commandDelegate = storeSystem.Exit, properParametersAmmount = new List<int>() { 0 } });
+            comandsDictionary.Add("logout",
+                new Command() { commandDelegate = storeSystem.LogOutUSer, properParametersAmmount = new List<int>() { 0 } });
+            comandsDictionary.Add("cls",
+                new Command() { commandDelegate = this.Cls, properParametersAmmount = new List<int>() { 0 } });
+            comandsDictionary.Add("add",
+               new Command() { commandDelegate = storeSystem.Add, properParametersAmmount = new List<int>() { 2 } });
+            comandsDictionary.Add("showcart",
+               new Command() { commandDelegate = storeSystem.ShowCart, properParametersAmmount = new List<int>() { 0 } });
+        }
+
         public string ParseCommand(string command)
         {
             var keyWord = command.GetKeyWord();
             var parameters = command.GetParameters();
 
-            //TODO sprawdzenie czy komenda jest obsługiwana
+
             if (!IsCommandOperate(keyWord))
             {
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
             }
 
-                return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
-                    ? comandsDictionary[keyWord].commandDelegate(parameters)
-                    : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+            return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
+                ? comandsDictionary[keyWord].commandDelegate(parameters)
+                : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
         }
 
+        private string Cls(List<string> parameters)
+        {
+            Console.Clear();
+            return "Wyczyszczono";
+        }
         private bool IsCommandOperate(string keyword)
         {
             return comandsDictionary.ContainsKey(keyword);

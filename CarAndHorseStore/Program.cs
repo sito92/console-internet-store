@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CarAndHorseStore.Core.CommandParser;
 using CarAndHorseStore.Core.System;
+using CarAndHorseStore.Core.System.Helpers;
 using CarAndHorseStore.Domain.Models;
 using CarAndHorseStore.Domain.Repository;
 using CarAndHorseStore.Domain.Repository.Interfaces;
@@ -18,6 +19,13 @@ namespace CarAndHorseStore
 
            // IKernel ninjectKernel = new StandardKernel();
 
+            //HorsePropertiesCheckTest();
+
+
+
+
+
+            
             
             IUserBaseRepository userBaseRepository= new UserBaseRepository();
             IProductRepository productRepository = new ProductRepository();
@@ -37,6 +45,32 @@ namespace CarAndHorseStore
                     Console.ReadKey();
                 }
             }
+             
         }
+
+        static void HorsePropertiesCheckTest()
+        {
+            Dictionary<string, string> filtersMock = new Dictionary<string, string>()
+            {
+                {"id","2"},
+                {"name","asdf"},
+
+            };
+
+
+            var result = FilterHelper.CheckeProperties<Horse>(filtersMock);
+
+
+            try
+            {
+                var horse = FilterHelper.GetHorseByFilters(filtersMock);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
     }
 }

@@ -29,7 +29,10 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         LogoutAccepted,
         AllreadyLogged,
         IncorrectParameter,
-        EmptyCart
+        EmptyCart,
+        IncorectKeyValue,
+        InvalidHorseAttribute,
+        InvalidCarAttribute
 
     }
 }

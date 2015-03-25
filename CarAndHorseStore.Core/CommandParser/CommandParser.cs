@@ -45,6 +45,8 @@ namespace CarAndHorseStore.Core.CommandParser
                new Command() { commandDelegate = storeSystem.Add, properParametersAmmount = new List<int>() { 2 } });
             comandsDictionary.Add("showcart",
                new Command() { commandDelegate = storeSystem.ShowCart, properParametersAmmount = new List<int>() { 0 } });
+            comandsDictionary.Add("showhorsesby",
+             new Command() { commandDelegate = storeSystem.ShowHorsesBy, properParametersAmmount = new List<int>() { 1 } });
         }
 
         public string ParseCommand(string command)

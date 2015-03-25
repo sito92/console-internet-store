@@ -17,5 +17,10 @@ namespace CarAndHorseStore.Domain.Repository
         {
             return FindBy(p => p.Price == price);
         }
+
+        public IEnumerable<Product> GetProductsByFilters(Dictionary<string, string> filters)
+        {
+            return null;
+        }
     }
 }

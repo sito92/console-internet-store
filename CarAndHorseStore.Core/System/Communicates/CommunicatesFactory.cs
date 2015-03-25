@@ -32,12 +32,17 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.LogoutAccepted, "Pomyślnie wylogowano"},
             {CommunicatesKinds.AllreadyLogged, "Jesteś już zalogowany"},
             {CommunicatesKinds.IncorrectParameter, "Nieprawidłowy parametr: "},
-            {CommunicatesKinds.EmptyCart, "Koszyk jest pusty"}
+            {CommunicatesKinds.EmptyCart, "Koszyk jest pusty"},
+            {CommunicatesKinds.InvalidHorseAttribute, "Nie obsługiwany atrybut konia"},
+            {CommunicatesKinds.InvalidCarAttribute, "Nie obsługiwany atrybut samochodu"},
+            {CommunicatesKinds.IncorectKeyValue, "Nieprawidłowy klucz lub wartość"},
+
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)
         {
             return communicatesDictionary.ContainsKey(kind) ? communicatesDictionary[kind] : "Błąd";
         }
+
     }
 }

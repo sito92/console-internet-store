@@ -5,6 +5,8 @@ using System.Runtime.Remoting.Lifetime;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.CommandParser.Role;
 using CarAndHorseStore.Core.System.Abstract;
+using CarAndHorseStore.Core.System.Exeptions;
+using CarAndHorseStore.Core.System.Helpers;
 using CarAndHorseStore.Domain.Models;
 using CarAndHorseStore.Domain.Models.HelpModels;
 using CarAndHorseStore.Domain.Repository.Interfaces;
@@ -18,7 +20,7 @@ namespace CarAndHorseStore.Core.System
         private IProductRepository productRepository;
         public bool IsWorking { get; protected set; }
 
-        public StoreSystem(IUserBaseRepository urepository,IProductRepository pRepository )
+        public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
         {
             userBaseRepository = urepository;
             productRepository = pRepository;
@@ -69,9 +71,9 @@ namespace CarAndHorseStore.Core.System
             if (loggedUSer.GetRole() == RoleKind.Administrator) return "Zalogowano jako admin";
 
             List<int> intParams = new List<int>(parameters.Count);
-            int temp;
             for (int i = 0; i < parameters.Count; i++)
             {
+                int temp;
                 if (Int32.TryParse(parameters[i], out temp))
                 {
                     intParams.Insert(i, temp);
@@ -80,15 +82,14 @@ namespace CarAndHorseStore.Core.System
                 {
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter) + i;
                 }
-
             }
             var id = intParams[0];
 
-            var user = (Client) loggedUSer;
+            var user = (Client)loggedUSer;
 
-            if (user.Cart==null)
+            if (user.Cart == null)
             {
-               user.Cart = new Cart();
+                user.Cart = new Cart();
             }
 
             var product = productRepository.FindBy(x => x.Id == id).FirstOrDefault();
@@ -105,13 +106,38 @@ namespace CarAndHorseStore.Core.System
             if (loggedUSer.GetRole() == RoleKind.Administrator) return "Zalogowano jako admin";
             var user = (Client)loggedUSer;
 
-            if (user.Cart == null)
+            return user.Cart == null ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart) : user.Cart.ToString();
+        }
+
+        public string ShowHorsesBy(List<string> parameters)
+        {
+            var filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
+            if (filtersDictionary == null)
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
+
+            if (!FilterHelper.CheckeProperties<Horse>(filtersDictionary))
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.InvalidHorseAttribute);
+
+            try
             {
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart);
+                var compareModel = FilterHelper.GetHorseByFilters(filtersDictionary);
+
+                var filtredHorses = productRepository.FindBy(x => x == x).AsEnumerable().OfType<Horse>()
+                    .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
+                    .Where(x => x.Name == (compareModel.Name ?? x.Name));
+
+
+                if (filtredHorses.Count() == 0)
+                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
+
+                var stringresult = filtredHorses.Aggregate("Znaleziono:\n",
+                    (current, horse) => current + (horse.ToString() + "\n"));
+                return stringresult;
             }
-
-            return user.Cart.ToString();
-
+            catch (InvalidValueExeption ex)
+            {
+                return ex.Message;
+            }
         }
 
     }

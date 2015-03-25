@@ -57,6 +57,7 @@
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\EngineType.cs" />
     <Compile Include="Models\HelpModels\Cart.cs" />
+    <Compile Include="Models\HelpModels\ComapreModel.cs" />
     <Compile Include="Models\Horse.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />

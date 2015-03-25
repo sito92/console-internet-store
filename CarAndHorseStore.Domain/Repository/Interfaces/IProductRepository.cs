@@ -10,5 +10,6 @@ namespace CarAndHorseStore.Domain.Repository.Interfaces
     {
         
         IQueryable<Product> GetProductsByPrice(float price);
+        IEnumerable<Product> GetProductsByFilters(Dictionary<string, string> filters);
     }
 }

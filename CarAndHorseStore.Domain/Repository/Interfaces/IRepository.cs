@@ -16,5 +16,7 @@ namespace CarAndHorseStore.Domain.Repository.Interfaces
         void SaveChanges();
 
         void Open();
+
+        IEnumerable<T> GetAllOfType();
     }
 }

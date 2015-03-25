@@ -19,6 +19,11 @@ namespace CarAndHorseStore.Domain.Repository
             return query;
         }
 
+        public IEnumerable<T> GetAllOfType()
+        {
+            var query = _entities.Set<T>().OfType<T>();
+            return query;
+        }
         public virtual void Add(T element)
         {
             _entities.Set<T>().Add(element);

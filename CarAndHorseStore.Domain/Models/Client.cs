@@ -7,7 +7,7 @@ namespace CarAndHorseStore.Domain.Models
     {
 
         [NotMapped]
-        public Cart Cart { get; set; }
+        public virtual Cart Cart { get; set; }
         //TODO dodanie jakiejś propercji "Role"?
     }
 }

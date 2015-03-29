@@ -422,6 +422,30 @@ namespace CarAndHorseStore.Domain.Migrations
             products.ForEach(x=> context.Products.AddOrUpdate(s=>s.Id,x));
             context.SaveChanges();
 
+
+            List<UserBase> users = new List<UserBase>()
+            {
+                new Admin()
+                {
+                    EMail = "admin@store.pl",
+                    Name = "Jan",
+                    Password = "qwerty123",
+                    UserName = "admin",
+                    Surname = "Kowalski"
+                },
+                new Client()
+                {
+                    EMail = "user@store.pl",
+                    Name = "Aam",
+                    Password = "qwerty123",
+                    UserName = "user",
+                    Surname = "Nowak"
+                }
+            };
+
+            users.ForEach(x=>context.Users.AddOrUpdate(s=>s.Id,x));
+            context.SaveChanges();
+
         }
     }
 }

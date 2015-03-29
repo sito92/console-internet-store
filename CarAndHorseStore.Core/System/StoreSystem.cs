@@ -124,7 +124,8 @@ namespace CarAndHorseStore.Core.System
 
                 var filtredHorses = productRepository.FindBy(x => x == x).AsEnumerable().OfType<Horse>()
                     .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
-                    .Where(x => x.Name == (compareModel.Name ?? x.Name));
+                    .Where(x => x.Name == (compareModel.Name ?? x.Name))
+                    .Where(x=>x.Breed.Name == (compareModel.BreedName ?? x.Breed.Name));
 
 
                 if (filtredHorses.Count() == 0)

@@ -14,7 +14,7 @@ namespace CarAndHorseStore.Domain.Models
 
         //public QRCode QRCode?
         public int ColorId { get; set; }
-        public Color Color { get; set; }
+        public virtual Color Color { get; set; }
         public float Price { get; set; }
     }
 }

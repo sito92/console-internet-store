@@ -11,13 +11,13 @@ namespace CarAndHorseStore.Domain.Models
         public int BodyTypeId { get; set; }
         
         public int EngineTypeId { get; set; }
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
 
-        public BodyType BodyType { get; set; }
+        public virtual BodyType BodyType { get; set; }
 
-        
 
-        public EngineType EngineType { get; set; }
+
+        public virtual EngineType EngineType { get; set; }
 
     }
 }

@@ -29,6 +29,8 @@ namespace CarAndHorseStore
             
             IUserBaseRepository userBaseRepository= new UserBaseRepository();
             IProductRepository productRepository = new ProductRepository();
+            //productRepository.Add(new Car(){BodyTypeId = 1,BrandId =1,ColorId = 2,Description = "sfdsf",EngineTypeId = 1,Name = "afasd",Price = 5});
+           // productRepository.SaveChanges();
             userBaseRepository.Open();
             Console.WriteLine(connected);
 

@@ -37,7 +37,7 @@ namespace CarAndHorseStore.Domain.Migrations
                 new BodyType() {Name = "KOMBI"},
                 new BodyType() {Name = "CABRIOLET"},
             };
-            bodyTypes.ForEach(s=> context.BodyTypes.AddOrUpdate(p=>p.Name,s));
+            bodyTypes.ForEach(s=> context.BodyTypes.AddOrUpdate(p=>p.Id,s));
             context.SaveChanges();
             List<Breed> breeds = new List<Breed>()
             {
@@ -52,7 +52,7 @@ namespace CarAndHorseStore.Domain.Migrations
                 new Breed() {Name = "Quarter Horse"},
                 new Breed() {Name = "Zweibrucker"},
             };
-            breeds.ForEach(s => context.Breeds.AddOrUpdate(p => p.Name, s));
+            breeds.ForEach(s => context.Breeds.AddOrUpdate(p => p.Id, s));
             context.SaveChanges();
 
             List<Sex> sexes = new List<Sex>()
@@ -60,7 +60,7 @@ namespace CarAndHorseStore.Domain.Migrations
                 new Sex(){Name = "MALE"},
                 new Sex(){Name = "FEMALE"}
             };
-            sexes.ForEach(s => context.Sexs.AddOrUpdate(p => p.Name, s));
+            sexes.ForEach(s => context.Sexs.AddOrUpdate(p => p.Id, s));
             context.SaveChanges();
             List<Brand> brands = new List<Brand>()
             {
@@ -72,7 +72,7 @@ namespace CarAndHorseStore.Domain.Migrations
                 new Brand() {Name = "TOYOTA"},
                 new Brand() {Name = "CITROEN"},
             };
-            brands.ForEach(s => context.Brands.AddOrUpdate(p => p.Name, s));
+            brands.ForEach(s => context.Brands.AddOrUpdate(p => p.Id, s));
             context.SaveChanges();
             List<Color> colors = new List<Color>()
             {
@@ -83,7 +83,7 @@ namespace CarAndHorseStore.Domain.Migrations
                 new Color() {Name = "GRANATOWY"},
 
             };
-            colors.ForEach(s => context.Colors.AddOrUpdate(p => p.Name, s));
+            colors.ForEach(s => context.Colors.AddOrUpdate(p => p.Id, s));
             context.SaveChanges();
             List<EngineType> engineTypes = new List<EngineType>()
             {
@@ -110,9 +110,318 @@ namespace CarAndHorseStore.Domain.Migrations
                 new EngineType() {CylinderAmount = 8, EngineCapacity = 7.0f},
 
             };
-            engineTypes.ForEach(s => context.EngineTypes.AddOrUpdate(p => p.EngineCapacity, s));
+            engineTypes.ForEach(s => context.EngineTypes.AddOrUpdate(p => p.Id, s));
             context.SaveChanges();
-            
+
+            List<Product> products = new List<Product>()
+            {
+                #region CarsSeed
+                new Car()
+                {
+                    Description = "Daje rade fura",
+                    Price = 9000,
+                    Name = "Golf III",
+                    BodyTypeId = 1,
+                    ColorId = 1,
+                    EngineTypeId = 1,
+                    BrandId = 2
+                },
+
+                new Car()
+                {
+                    Description = "Dobra fura",
+                    Price = 2000,
+                    Name = "Golf II",
+                    BodyTypeId = 2,
+                    ColorId = 1,
+                    EngineTypeId = 2,
+                    BrandId = 2
+                },
+                new Car()
+                {
+                    Description = "Wiadomo co to za auto. Klasa.",
+                    Price = 111000,
+                    Name = "S class",
+                    BodyTypeId = 1,
+                    ColorId = 1,
+                    EngineTypeId = 9,
+                    BrandId = 1
+                },
+                new Car()
+                {
+                    Description = "Auto kosmicznej klasy",
+                    Price = 234000,
+                    Name = "Z class",
+                    BodyTypeId = 2,
+                    ColorId = 1,
+                    EngineTypeId = 8,
+                    BrandId = 1
+                },
+                new Car()
+                {
+                    Description = "Auto dla biedaków",
+                    Price = 9000,
+                    Name = "Seicento",
+                    BodyTypeId = 1,
+                    ColorId = 2,
+                    EngineTypeId = 1,
+                    BrandId = 3
+                },
+                new Car()
+                {
+                    Description = "Dobra fura dla biedaków",
+                    Price = 2000,
+                    Name = "Seicento 76",
+                    BodyTypeId = 2,
+                    ColorId = 2,
+                    EngineTypeId = 2,
+                    BrandId = 3
+                },
+                new Car()
+                {
+                    Description = "Gwarancja dobrych ³owów na ka¿dej imprezie",
+                    Price = 51000,
+                    Name = "e46",
+                    BodyTypeId = 4,
+                    ColorId = 3,
+                    EngineTypeId = 16,
+                    BrandId = 4
+                },
+                new Car()
+                {
+                    Description = "Prawdziwa gwarancja dobrych ³owów na ka¿dej imprezie",
+                    Price = 2341000,
+                    Name = "e666",
+                    BodyTypeId = 3,
+                    ColorId = 5,
+                    EngineTypeId = 11,
+                    BrandId = 4
+                },
+                new Car()
+                {
+                    Description = "Najprawdziwsza gwarancja dobrych ³owów na ka¿dej imprezie",
+                    Price = 2114000,
+                    Name = "e121212",
+                    BodyTypeId = 3,
+                    ColorId = 5,
+                    EngineTypeId = 12,
+                    BrandId = 4
+                },
+                new Car()
+                {
+                    Description = "Sam mam(Admin), polecam.",
+                    Price = 60000,
+                    Name = "A4",
+                    BodyTypeId = 1,
+                    ColorId = 1,
+                    EngineTypeId = 19,
+                    BrandId = 5
+                },
+                new Car()
+                {
+                    Description = "Dobra fura",
+                    Price = 15000,
+                    Name = "A4",
+                    BodyTypeId = 2,
+                    ColorId = 1,
+                    EngineTypeId = 14,
+                    BrandId = 5
+                },
+                new Car()
+                {
+                    Description = "Sam mam(Mod), polecam.",
+                    Price = 60000,
+                    Name = "Yaris",
+                    BodyTypeId = 1,
+                    ColorId = 1,
+                    EngineTypeId = 19,
+                    BrandId = 6
+                },
+                new Car()
+                {
+                    Description = "Samochód Karola",
+                    Price = 54000,
+                    Name = "Karolla",
+                    BodyTypeId = 2,
+                    ColorId = 1,
+                    EngineTypeId = 14,
+                    BrandId = 6
+                },
+                new Car()
+                {
+                    Description = "Niezawodny.",
+                    Price = 111000,
+                    Name = "C5",
+                    BodyTypeId = 5,
+                    ColorId = 2,
+                    EngineTypeId = 9,
+                    BrandId = 7
+                },
+                new Car()
+                {
+                    Description = "Git auto",
+                    Price = 234000,
+                    Name = "C4",
+                    BodyTypeId = 5,
+                    ColorId = 2,
+                    EngineTypeId = 8,
+                    BrandId = 7
+                },
+
+                #endregion
+                #region HorsesSeed
+
+
+                new Horse()
+                {
+                    Description = "Bardzo dobry koñ, bardzo",
+                    Price = 2000,
+                    Name = "Jacek",
+                    BreedId = 1,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Jak gepard panie",
+                    Price = 3000,
+                    Name = "Placek",
+                    BreedId = 2,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Mocne nogi ma",
+                    Price = 10000,
+                    Name = "Plankton",
+                    BreedId = 3,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Bardzo dobry koñ, bardzo",
+                    Price = 2000,
+                    Name = "Sebek",
+                    BreedId = 4,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Jak gepard panie",
+                    Price = 33000,
+                    Name = "Wurst",
+                    BreedId = 5,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Mocne nogi ma",
+                    Price = 9000,
+                    Name = "Wezuwiusz",
+                    BreedId = 6,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Mocny jak wó³",
+                    Price = 1050,
+                    Name = "Kopacek",
+                    BreedId = 1,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Jak dobry doœæ tak",
+                    Price = 3100,
+                    Name = "Klacek",
+                    BreedId = 2,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Mocne nogi ma",
+                    Price = 10400,
+                    Name = "Roman",
+                    BreedId = 7,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Nie zawiedzie was",
+                    Price = 2000,
+                    Name = "Ogar",
+                    BreedId = 4,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Jak gepard panie albo dwa",
+                    Price = 23000,
+                    Name = "Komar",
+                    BreedId = 5,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Z bólem serca, ale musimy go sprzedaæ",
+                    Price = 7000,
+                    Name = "Eryk",
+                    BreedId = 6,
+                    SexId = 1,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Mocne nogi ma",
+                    Price = 10000,
+                    Name = "Romana",
+                    BreedId = 7,
+                    SexId = 2,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Nie zawiedzie was",
+                    Price = 8000,
+                    Name = "Ogara",
+                    BreedId = 4,
+                    SexId = 2,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Jak gepard panie albo dwa",
+                    Price = 21000,
+                    Name = "Komara",
+                    BreedId = 5,
+                    SexId = 2,
+                    ColorId = 1
+                },
+                new Horse()
+                {
+                    Description = "Z bólem serca, ale musimy j¹ sprzedaæ",
+                    Price = 4000,
+                    Name = "Eryk",
+                    BreedId = 6,
+                    SexId = 2,
+                    ColorId = 1
+                },
+
+                #endregion
+            };
+            products.ForEach(x=> context.Products.AddOrUpdate(s=>s.Id,x));
+            context.SaveChanges();
+
         }
     }
 }

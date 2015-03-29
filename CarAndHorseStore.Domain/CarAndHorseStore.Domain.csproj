@@ -48,6 +48,11 @@
   <ItemGroup>
     <Compile Include="Interfaces\IProduct.cs" />
     <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Migrations\201503261623080_FirstMigration.cs" />
+    <Compile Include="Migrations\201503261623080_FirstMigration.Designer.cs">
+      <DependentUpon>201503261623080_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BodyType.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -56,6 +61,8 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\EngineType.cs" />
+    <Compile Include="Models\HelpModels\Cart.cs" />
+    <Compile Include="Models\HelpModels\ComapreModel.cs" />
     <Compile Include="Models\Horse.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
@@ -84,6 +91,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201503261623080_FirstMigration.resx">
+      <DependentUpon>201503261623080_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

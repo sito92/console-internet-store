@@ -19,8 +19,20 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         ProductRemovedFromList,
         ProductNotRemovedError,
         OrderIsInProgress,
-        OrderCancelled, // potrzebne?
-        LogoutFailed, //fantazja,co?
-        IncorrectParametersAmmount
+        OrderCancelled, 
+        LogoutFailed, 
+        IncorrectParametersAmmount,
+        CommandNotCooperate,
+        LoggedAs,
+        NotLogged,
+        Thanks,
+        LogoutAccepted,
+        AllreadyLogged,
+        IncorrectParameter,
+        EmptyCart,
+        IncorectKeyValue,
+        InvalidHorseAttribute,
+        InvalidCarAttribute
+
     }
 }

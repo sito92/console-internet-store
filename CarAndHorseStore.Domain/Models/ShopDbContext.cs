@@ -9,11 +9,12 @@ namespace CarAndHorseStore.Domain.Models
     public class ShopDbContext : DbContext
     {
         public ShopDbContext()
-            : base("DefaultConnection")
+            : base("LocalConnection")
         {
             
+            
         }
-
+        
         public DbSet<UserBase> Users { get; set; }
         public DbSet<BodyType> BodyTypes { get; set; }
         public DbSet<Brand> Brands { get; set; }

@@ -29,7 +29,7 @@ namespace CarAndHorseStore.Core.System
             productRepository = pRepository;
             IsWorking = true;
         }
-
+        #region FunctinalitiesMethods
         public string LogInUser(List<string> parameters)
         {
             if (loggedUser != null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.AlreadyLogged);
@@ -95,7 +95,7 @@ namespace CarAndHorseStore.Core.System
             {
                 user.Cart = new Cart();
             }
-
+            
             var product = productRepository.FindBy(x => x.Id == id).FirstOrDefault();
             if (product == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
@@ -225,7 +225,7 @@ namespace CarAndHorseStore.Core.System
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.UpdatedProductInfo);
         }
-
+        #endregion
         #region CheckMethods
 
         private bool CheckIfNotAdmin(out string CheckCommunicate)
@@ -244,7 +244,7 @@ namespace CarAndHorseStore.Core.System
             return true;
         }
         #endregion
-
+        #region ShowMethods
         public string ShowCart(List<string> parameters)
         {
             if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
@@ -300,22 +300,8 @@ namespace CarAndHorseStore.Core.System
                 return ex.Message;
             }
         }
-
-        private static bool FilterCheck<T>(List<string> parameters, out Dictionary<string, string> filtersDictionary, out string CheckCommunicate)
-        {
-            CheckCommunicate = "";
-            filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
-            if (filtersDictionary == null)
-            {
-                CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
-                return true;
-            }
-
-            if (FilterHelper.CheckeProperties<T>(filtersDictionary)) return false;
-            CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.InvalidAttribute);
-            return true;
-        }
-
+        #endregion    
+        #region FiltredProductMethods
         private IEnumerable<Horse> GetFiltredHorses(ComapreModel compareModel)
         {
             var filtredHorses = productRepository.FindBy(x => x==x).AsEnumerable().OfType<Horse>()
@@ -362,5 +348,21 @@ namespace CarAndHorseStore.Core.System
             return filtredCars;
 
         }
+        #endregion
+        private static bool FilterCheck<T>(List<string> parameters, out Dictionary<string, string> filtersDictionary, out string CheckCommunicate)
+        {
+            CheckCommunicate = "";
+            filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
+            if (filtersDictionary == null)
+            {
+                CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
+                return true;
+            }
+
+            if (FilterHelper.CheckeProperties<T>(filtersDictionary)) return false;
+            CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.InvalidAttribute);
+            return true;
+        }
+
     }
 }

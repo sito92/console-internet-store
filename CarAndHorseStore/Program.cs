@@ -65,7 +65,7 @@ namespace CarAndHorseStore
 
             try
             {
-                var horse = FilterHelper.GetHorseByFilters(filtersMock);
+                var horse = FilterHelper.GetCompareModel(filtersMock);
             }
             catch (Exception ex)
             {

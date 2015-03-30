@@ -15,8 +15,6 @@ namespace CarAndHorseStore.Domain.Models
 
         public virtual BodyType BodyType { get; set; }
 
-
-
         public virtual EngineType EngineType { get; set; }
 
     }

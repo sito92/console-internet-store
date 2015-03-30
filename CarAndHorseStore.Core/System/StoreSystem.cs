@@ -20,6 +20,7 @@ namespace CarAndHorseStore.Core.System
         private UserBase loggedUSer;
         private IUserBaseRepository userBaseRepository;
         private IProductRepository productRepository;
+ 
         public bool IsWorking { get; protected set; }
 
         public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
@@ -131,22 +132,15 @@ namespace CarAndHorseStore.Core.System
 
         public string ShowHorsesBy(List<string> parameters)
         {
-            var filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
-            if (filtersDictionary == null)
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
-
-            if (!FilterHelper.CheckeProperties<Horse>(filtersDictionary))
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.InvalidHorseAttribute);
+            Dictionary<string, string> filtersDictionary;
+            if (FilterCheck<Horse>(parameters, out filtersDictionary, out CheckCommunicate)) return CheckCommunicate;
 
             try
             {
-                var compareModel = FilterHelper.GetHorseByFilters(filtersDictionary);
+                var compareModel = FilterHelper.GetCompareModel(filtersDictionary);
 
-                var filtredHorses = productRepository.FindBy(x => x == x).AsEnumerable().OfType<Horse>()
-                    .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
-                    .Where(x => x.Name.ContainsWithComparer(compareModel.Name ?? x.Name,StringComparison.OrdinalIgnoreCase))
-                    .Where(x=>x.Breed.Name.ContainsWithComparer(compareModel.Breed ?? x.Breed.Name,StringComparison.OrdinalIgnoreCase));
-
+                var filtredHorses = GetFiltredHorses(compareModel);
+                    
                 if (filtredHorses.Count() == 0)
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
@@ -159,6 +153,90 @@ namespace CarAndHorseStore.Core.System
                 return ex.Message;
             }
         }
+        public string ShowCarsBy(List<string> parameters)
+        {
+            Dictionary<string, string> filtersDictionary;
+            if (FilterCheck<Car>(parameters, out filtersDictionary, out CheckCommunicate)) return CheckCommunicate;
 
+            try
+            {
+                var compareModel = FilterHelper.GetCompareModel(filtersDictionary);
+
+                var filtredCars = GetFiltredCars(compareModel);
+
+                if (filtredCars.Count() == 0)
+                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
+
+                var stringresult = filtredCars.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.Found),
+                    (current, car) => current + (car.ToString() + "\n"));
+                return stringresult;
+            }
+            catch (InvalidValueExeption ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        private static bool FilterCheck<T>(List<string> parameters, out Dictionary<string, string> filtersDictionary, out string CheckCommunicate)
+        {
+            CheckCommunicate = "";
+            filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
+            if (filtersDictionary == null)
+            {
+                CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
+                return true;
+            }
+
+            if (FilterHelper.CheckeProperties<T>(filtersDictionary)) return false;
+            CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.InvalidAttribute);
+            return true;
+        }
+
+        private IEnumerable<Horse> GetFiltredHorses(ComapreModel compareModel)
+        {
+            var filtredHorses = productRepository.FindBy(x => x==x).AsEnumerable().OfType<Horse>()
+                .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
+                .Where(
+                    x =>
+                        x.Name.ContainsWithComparer(compareModel.Name ?? x.Name, StringComparison.OrdinalIgnoreCase))
+                .Where(
+                    x =>
+                        x.Breed.Name.ContainsWithComparer(compareModel.Breed ?? x.Breed.Name,
+                            StringComparison.OrdinalIgnoreCase))
+                .Where(
+                    x =>
+                        x.Color.Name.ContainsWithComparer(compareModel.Color ?? x.Color.Name,
+                            StringComparison.OrdinalIgnoreCase))
+                .Where(x => x.Price == (compareModel.Price == 0 ? x.Price : compareModel.Price));
+            return filtredHorses;
+        }
+
+        private IEnumerable<Car> GetFiltredCars(ComapreModel compareModel)
+        {
+            var filtredCars = productRepository.FindBy(x => true).AsEnumerable().OfType<Car>()
+                .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
+                .Where(
+                    x =>
+                        x.Name.ContainsWithComparer(compareModel.Name ?? x.Name, StringComparison.OrdinalIgnoreCase))
+                .Where(x => x.Price == (compareModel.Price == 0 ? x.Price : compareModel.Price))
+                .Where(
+                    x =>
+                        x.Brand.Name.ContainsWithComparer(compareModel.Brand ?? x.Brand.Name,
+                            StringComparison.OrdinalIgnoreCase))
+                .Where(
+                    x =>
+                        x.BodyType.Name.ContainsWithComparer(compareModel.Bodytype ?? x.BodyType.Name,
+                            StringComparison.OrdinalIgnoreCase))
+                .Where(
+                    x =>
+                        x.EngineType.CylinderAmount ==
+                        (compareModel.Cylinderamount == 0 ? x.EngineType.CylinderAmount : compareModel.Cylinderamount))
+                .Where(
+                    x =>
+                        x.EngineType.EngineCapacity ==
+                        (compareModel.Enginecapacity == 0 ? x.EngineType.EngineCapacity : compareModel.Enginecapacity));
+            return filtredCars;
+
+        }
     }
 }

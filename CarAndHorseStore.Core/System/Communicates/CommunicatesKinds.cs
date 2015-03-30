@@ -35,6 +35,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         InvalidCarAttribute,
         LoggedAsAdmin,
         Found,
+        InvalidAttribute
 
     }
 }

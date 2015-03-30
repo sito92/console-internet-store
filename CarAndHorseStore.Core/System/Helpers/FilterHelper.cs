@@ -12,20 +12,35 @@ namespace CarAndHorseStore.Core.System.Helpers
 {
     public static class FilterHelper
     {
+        private const char atribiutesDelimeter = ',';
+        private const char keyValueDelimeter = '=';
         public static bool CheckeProperties<T>(Dictionary<string, string> filters)
         {
             var type = typeof(T);
-            var typePropertiesNames = type.GetProperties().Select(x => x.Name.ToLower());
+            //var property = type.GetProperties()[0];
+           // property.t
 
+            //var typePropertiesNames = type.GetProperties().Select(x => x.Name.ToLower());
+            var typePropertiesNames = new List<string>();
+            var proprties = type.GetProperties();
+
+            foreach (var property in proprties)
+            {
+                typePropertiesNames.Add(property.Name.ToLower());
+                if (!property.PropertyType.IsPrimitive && property.PropertyType != typeof(string))
+                {
+                    typePropertiesNames.AddRange(property.PropertyType.GetProperties().Select(x=>x.Name.ToLower()));
+                }
+            }
             return !filters.Any(filter => !typePropertiesNames.Contains(filter.Key.ToLower()));
         }
 
         public static Dictionary<string, string> GetFiltersDictionary(string parameters)
         {
-            var filters = parameters.Split(',');
+            var filters = parameters.Split(atribiutesDelimeter);
             Dictionary<string, string> filtersDictionary = new Dictionary<string, string>();
 
-            foreach (var temp in filters.Select(filter => filter.Split('=')))
+            foreach (var temp in filters.Select(filter => filter.Split(keyValueDelimeter)))
             {
                 if (temp.Count() != 2 || string.IsNullOrEmpty(temp[0]) || string.IsNullOrEmpty(temp[1]))
                 {
@@ -37,7 +52,7 @@ namespace CarAndHorseStore.Core.System.Helpers
             return filtersDictionary;
         }
 
-        public static ComapreModel GetHorseByFilters(Dictionary<string, string> filtersDictionary)
+        public static ComapreModel GetCompareModel(Dictionary<string, string> filtersDictionary)
         {
             var type = typeof(ComapreModel);
             ComapreModel compareModel = new ComapreModel();
@@ -47,10 +62,10 @@ namespace CarAndHorseStore.Core.System.Helpers
                 var property = type.GetProperty(filter.Key.UpperCaseFirstLetter());
                 try
                 {
-                    property.SetValue(compareModel, Convert.ChangeType(filter.Value, property.PropertyType), null);
+                    property.SetValue(compareModel, Convert.ChangeType(filter.Value.Replace(".",","), property.PropertyType), null);
                    
                 }
-                catch(Exception ex)
+                catch
                 {
                     throw new InvalidValueExeption(filter.Value,filter.Key);
                 }

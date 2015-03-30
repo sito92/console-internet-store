@@ -47,10 +47,16 @@ namespace CarAndHorseStore.Core.CommandParser
                new Command() { commandDelegate = storeSystem.ShowCart, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("showhorsesby",
              new Command() { commandDelegate = storeSystem.ShowHorsesBy, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("showcarsby",
+             new Command() { commandDelegate = storeSystem.ShowCarsBy, properParametersAmmount = new List<int>() { 1 } });
         }
 
         public string ParseCommand(string command)
         {
+            if (String.IsNullOrEmpty(command))
+            {
+                return command;
+            }
             var keyWord = command.GetKeyWord();
             var parameters = command.GetParameters();
 

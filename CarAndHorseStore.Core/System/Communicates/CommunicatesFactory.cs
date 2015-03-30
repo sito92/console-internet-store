@@ -36,7 +36,9 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.InvalidHorseAttribute, "Nie obsługiwany atrybut konia"},
             {CommunicatesKinds.InvalidCarAttribute, "Nie obsługiwany atrybut samochodu"},
             {CommunicatesKinds.LoggedAsAdmin,"Nie można wykonać akcji, zalogowano jako admin"},
-            {CommunicatesKinds.Found,"Znaleziono:\n"}
+            {CommunicatesKinds.Found,"Znaleziono:\n"},
+            {CommunicatesKinds.IncorectKeyValue,"Nie prawidłowa para wartość-klucz"},
+            {CommunicatesKinds.InvalidAttribute,"Nie prawidłowy atrubut"}
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)

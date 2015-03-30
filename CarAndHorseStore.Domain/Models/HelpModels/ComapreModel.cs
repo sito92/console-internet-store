@@ -10,6 +10,7 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public string BreedName { get; set; }
+        
+        public string Breed { get; set; }
     }
 }

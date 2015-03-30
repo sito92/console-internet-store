@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Remoting.Lifetime;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.CommandParser.Role;
+using CarAndHorseStore.Core.Extensions;
 using CarAndHorseStore.Core.System.Abstract;
 using CarAndHorseStore.Core.System.Exeptions;
 using CarAndHorseStore.Core.System.Helpers;
@@ -15,6 +16,7 @@ namespace CarAndHorseStore.Core.System
 {
     public class StoreSystem : IStoreSystem
     {
+        private string CheckCommunicate;
         private UserBase loggedUSer;
         private IUserBaseRepository userBaseRepository;
         private IProductRepository productRepository;
@@ -47,7 +49,7 @@ namespace CarAndHorseStore.Core.System
 
         public string LogOutUSer(List<string> parameters)
         {
-            if (loggedUSer == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
             loggedUSer = null;
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LogoutAccepted);
         }
@@ -67,8 +69,9 @@ namespace CarAndHorseStore.Core.System
 
         public string Add(List<string> parameters)
         {
-            if (loggedUSer == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
-            if (loggedUSer.GetRole() == RoleKind.Administrator) return "Zalogowano jako admin";
+            
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
 
             List<int> intParams = new List<int>(parameters.Count);
             for (int i = 0; i < parameters.Count; i++)
@@ -99,11 +102,28 @@ namespace CarAndHorseStore.Core.System
             user.Cart.Products.Add(product);
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToList);
         }
+        #region CheckMethods
 
+        private bool CheckIfNotAdmin(out string CheckCommunicate)
+        {
+            CheckCommunicate = "";
+            if (loggedUSer.GetRole() != RoleKind.Administrator) return false;
+            CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAsAdmin);
+            return true;
+        }
+
+        private bool CheckIfLogged(out string CheckCommunicate)
+        {
+            CheckCommunicate = "";
+            if (loggedUSer != null) return false;
+            CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
+            return true;
+        }
+        #endregion
         public string ShowCart(List<string> parameters)
         {
-            if (loggedUSer == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
-            if (loggedUSer.GetRole() == RoleKind.Administrator) return "Zalogowano jako admin";
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
             var user = (Client)loggedUSer;
 
             return user.Cart == null ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart) : user.Cart.ToString();
@@ -124,14 +144,13 @@ namespace CarAndHorseStore.Core.System
 
                 var filtredHorses = productRepository.FindBy(x => x == x).AsEnumerable().OfType<Horse>()
                     .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
-                    .Where(x => x.Name == (compareModel.Name ?? x.Name))
-                    .Where(x=>x.Breed.Name == (compareModel.BreedName ?? x.Breed.Name));
-
+                    .Where(x => x.Name.ContainsWithComparer(compareModel.Name ?? x.Name,StringComparison.OrdinalIgnoreCase))
+                    .Where(x=>x.Breed.Name.ContainsWithComparer(compareModel.Breed ?? x.Breed.Name,StringComparison.OrdinalIgnoreCase));
 
                 if (filtredHorses.Count() == 0)
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
-                var stringresult = filtredHorses.Aggregate("Znaleziono:\n",
+                var stringresult = filtredHorses.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.Found),
                     (current, horse) => current + (horse.ToString() + "\n"));
                 return stringresult;
             }

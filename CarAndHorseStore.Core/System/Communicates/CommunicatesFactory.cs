@@ -26,7 +26,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.LogoutFailed, "Wylogowanie nie powiodło się. Proszę spróbować ponownie."},
             {CommunicatesKinds.IncorrectParametersAmmount, "Nie prawidłowaliczba parametrów"},
             {CommunicatesKinds.CommandNotCooperate, "Komenda nie obsługiwana"},
-            {CommunicatesKinds.LoggedAs, "Zalogowany jako"},
+            {CommunicatesKinds.LoggedAs, "Zalogowany jako: "},
             {CommunicatesKinds.NotLogged, "Nie jesteś zalogowany"},
             {CommunicatesKinds.Thanks, "Dziękujemy za używanie systemu"},
             {CommunicatesKinds.LogoutAccepted, "Pomyślnie wylogowano"},
@@ -35,8 +35,8 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.EmptyCart, "Koszyk jest pusty"},
             {CommunicatesKinds.InvalidHorseAttribute, "Nie obsługiwany atrybut konia"},
             {CommunicatesKinds.InvalidCarAttribute, "Nie obsługiwany atrybut samochodu"},
-            {CommunicatesKinds.IncorectKeyValue, "Nieprawidłowy klucz lub wartość"},
-
+            {CommunicatesKinds.LoggedAsAdmin,"Nie można wykonać akcji, zalogowano jako admin"},
+            {CommunicatesKinds.Found,"Znaleziono:\n"}
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)

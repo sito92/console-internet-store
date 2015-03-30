@@ -32,7 +32,9 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         EmptyCart,
         IncorectKeyValue,
         InvalidHorseAttribute,
-        InvalidCarAttribute
+        InvalidCarAttribute,
+        LoggedAsAdmin,
+        Found,
 
     }
 }

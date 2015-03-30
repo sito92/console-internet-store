@@ -42,13 +42,27 @@ namespace CarAndHorseStore.Core.CommandParser
             comandsDictionary.Add("cls",
                 new Command() { commandDelegate = this.Cls, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("add",
-               new Command() { commandDelegate = storeSystem.Add, properParametersAmmount = new List<int>() { 2 } });
+               new Command() { commandDelegate = storeSystem.AddProductToCart, properParametersAmmount = new List<int>() { 2 } });
+            comandsDictionary.Add("remove",
+             new Command() { commandDelegate = storeSystem.RemoveProductFromCart, properParametersAmmount = new List<int>() { 2 } }); 
             comandsDictionary.Add("showcart",
                new Command() { commandDelegate = storeSystem.ShowCart, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("showhorsesby",
              new Command() { commandDelegate = storeSystem.ShowHorsesBy, properParametersAmmount = new List<int>() { 1 } });
             comandsDictionary.Add("showcarsby",
              new Command() { commandDelegate = storeSystem.ShowCarsBy, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("checkout",
+             new Command() { commandDelegate = storeSystem.CheckOut, properParametersAmmount = new List<int>() { 0 } });
+            comandsDictionary.Add("info",
+             new Command() { commandDelegate = storeSystem.ShowProductInfo, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("create",
+             new Command() { commandDelegate = storeSystem.CreateUser, properParametersAmmount = new List<int>() { 3 } });
+            comandsDictionary.Add("addproduct",
+             new Command() { commandDelegate = storeSystem.AddProductToShop, properParametersAmmount = new List<int>() { 5 } }); 
+            comandsDictionary.Add("deleteproduct",
+             new Command() { commandDelegate = storeSystem.DeleteProduct, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("updateproduct",
+             new Command() { commandDelegate = storeSystem.UpdateProduct, properParametersAmmount = new List<int>() { 2, 3, 4, 5 } });  //TODO przemyslenie        
         }
 
         public string ParseCommand(string command)

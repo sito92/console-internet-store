@@ -32,7 +32,7 @@ namespace CarAndHorseStore.Core.System
 
         public string LogInUser(List<string> parameters)
         {
-            if (loggedUser != null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.AllreadyLogged);
+            if (loggedUser != null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.AlreadyLogged);
 
             var login = parameters[0];
             var password = parameters[1];
@@ -68,7 +68,7 @@ namespace CarAndHorseStore.Core.System
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.Thanks);
         }
 
-        public string Add(List<string> parameters)
+        public string AddProductToCart(List<string> parameters)
         {
             
             if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
@@ -99,10 +99,133 @@ namespace CarAndHorseStore.Core.System
             var product = productRepository.FindBy(x => x.Id == id).FirstOrDefault();
             if (product == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
-            //TODO AMount razy
-            user.Cart.Products.Add(product);
-            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToList);
+                       
+            for (int i = 0; i < intParams[1]; i++)
+            {
+                user.Cart.Products.Add(product);
+            }                   
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToCart);
         }
+
+        public string RemoveProductFromCart(List<string> parameters)
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+            List<int> intParams = new List<int>(parameters.Count);
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                int temp;
+                if (Int32.TryParse(parameters[i], out temp))
+                {
+                    intParams.Insert(i, temp);
+                }
+                else
+                {
+                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter) + i;
+                }
+            }
+
+            var id = intParams[0];
+
+            var user = (Client)loggedUser;
+
+            //
+            //Ciało właściwej funkcji
+            //            
+           
+
+            for (int i = 0; i < intParams[1]; i++)
+            {
+                //user.Cart.Products.Remove(product);
+            }   
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductRemovedFromCart);
+
+        }
+
+        public string CheckOut(List<string> parameters)   
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+            var user = (Client)loggedUser;
+
+            if (user.Cart == null)
+            {
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart);
+            }
+
+            //
+            //Ciało właściwej funkcji
+            // 
+
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.OrderIsInProgress);
+        }
+
+        public string ShowProductInfo(List<string> parameters)
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+
+            //
+            //Ciało właściwej funkcji
+            // 
+
+            return "Na razie bez opisu";
+        }
+
+        public string CreateUser(List<string> parameters)
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NewUserCreated);
+        }
+
+        public string AddProductToShop(List<string> parameters)
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+            //
+            //Ciało właściwej funkcji
+            // 
+
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShop);
+        }
+
+        public string DeleteProduct(List<string> parameters)
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+            int id;
+            if (Int32.TryParse(parameters[0], out id))
+            {
+                //funkcja usuwająca produktu ze sklepu
+            }
+            else
+            {
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter);
+            }
+
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductDeltedFromShop);
+        }
+
+        public string UpdateProduct(List<string> parameters)
+        {
+            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+
+
+            //
+            //Ciało właściwej funkcji
+            // 
+
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.UpdatedProductInfo);
+        }
+
         #region CheckMethods
 
         private bool CheckIfNotAdmin(out string CheckCommunicate)

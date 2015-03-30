@@ -14,6 +14,7 @@ namespace CarAndHorseStore.Core.System.Helpers
     {
         private const char atribiutesDelimeter = ',';
         private const char keyValueDelimeter = '=';
+
         public static bool CheckeProperties<T>(Dictionary<string, string> filters)
         {
             var type = typeof(T);

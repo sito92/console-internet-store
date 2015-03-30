@@ -17,7 +17,7 @@ namespace CarAndHorseStore.Core.System
     public class StoreSystem : IStoreSystem
     {
         private string CheckCommunicate;
-        private UserBase loggedUSer;
+        private UserBase loggedUser;
         private IUserBaseRepository userBaseRepository;
         private IProductRepository productRepository;
  
@@ -32,7 +32,7 @@ namespace CarAndHorseStore.Core.System
 
         public string LogInUser(List<string> parameters)
         {
-            if (loggedUSer != null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.AllreadyLogged);
+            if (loggedUser != null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.AllreadyLogged);
 
             var login = parameters[0];
             var password = parameters[1];
@@ -44,21 +44,21 @@ namespace CarAndHorseStore.Core.System
 
             if (user.Password != password)
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectPassword);
-            loggedUSer = user;
+            loggedUser = user;
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccepted);
         }
 
-        public string LogOutUSer(List<string> parameters)
+        public string LogOutUser(List<string> parameters)
         {
             if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            loggedUSer = null;
+            loggedUser = null;
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LogoutAccepted);
         }
 
         public string WhoAmI(List<string> parameters)
         {
-            return loggedUSer != null
-                ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAs) + loggedUSer.Name
+            return loggedUser != null
+                ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAs) + loggedUser.Name
                 : CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
         }
 
@@ -89,7 +89,7 @@ namespace CarAndHorseStore.Core.System
             }
             var id = intParams[0];
 
-            var user = (Client)loggedUSer;
+            var user = (Client)loggedUser;
 
             if (user.Cart == null)
             {
@@ -108,7 +108,7 @@ namespace CarAndHorseStore.Core.System
         private bool CheckIfNotAdmin(out string CheckCommunicate)
         {
             CheckCommunicate = "";
-            if (loggedUSer.GetRole() != RoleKind.Administrator) return false;
+            if (loggedUser.GetRole() != RoleKind.Administrator) return false;
             CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAsAdmin);
             return true;
         }
@@ -116,16 +116,17 @@ namespace CarAndHorseStore.Core.System
         private bool CheckIfLogged(out string CheckCommunicate)
         {
             CheckCommunicate = "";
-            if (loggedUSer != null) return false;
+            if (loggedUser != null) return false;
             CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
             return true;
         }
         #endregion
+
         public string ShowCart(List<string> parameters)
         {
             if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
             if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
-            var user = (Client)loggedUSer;
+            var user = (Client)loggedUser;
 
             return user.Cart == null ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart) : user.Cart.ToString();
         }

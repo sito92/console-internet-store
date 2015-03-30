@@ -20,11 +20,6 @@ namespace CarAndHorseStore
            // IKernel ninjectKernel = new StandardKernel();
 
             //HorsePropertiesCheckTest();
-
-
-
-
-
             
             
             IUserBaseRepository userBaseRepository= new UserBaseRepository();

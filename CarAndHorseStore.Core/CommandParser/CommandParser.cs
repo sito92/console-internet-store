@@ -38,7 +38,7 @@ namespace CarAndHorseStore.Core.CommandParser
             comandsDictionary.Add("exit",
                 new Command() { commandDelegate = storeSystem.Exit, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("logout",
-                new Command() { commandDelegate = storeSystem.LogOutUSer, properParametersAmmount = new List<int>() { 0 } });
+                new Command() { commandDelegate = storeSystem.LogOutUser, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("cls",
                 new Command() { commandDelegate = this.Cls, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("add",

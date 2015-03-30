@@ -34,6 +34,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         InvalidHorseAttribute,
         InvalidCarAttribute,
         LoggedAsAdmin,
+        LoggedAsClient,
         Found,
         InvalidAttribute
 

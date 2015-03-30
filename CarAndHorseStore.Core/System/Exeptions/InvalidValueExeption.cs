@@ -8,7 +8,7 @@ namespace CarAndHorseStore.Core.System.Exeptions
 {
     public class InvalidValueExeption:Exception
     {
-        private const string error = "Nie prawidłowa wartość: ";
+        private const string error = "Nieprawidłowa wartość: ";
         private const string errorfor = " dla: ";
         private string value;
         private string property;

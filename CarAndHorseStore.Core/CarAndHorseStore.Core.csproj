@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="CommandParser\Abstract\ICommandParser.cs" />
     <Compile Include="CommandParser\CommandParser.cs" />
-    <Compile Include="CommandParser\CommandsFactory.cs" />
     <Compile Include="CommandParser\Commands\Command.cs" />
     <Compile Include="CommandParser\Commands\CommandStringExtension.cs" />
     <Compile Include="Extensions\ListExtension.cs" />

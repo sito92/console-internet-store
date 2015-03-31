@@ -129,7 +129,7 @@ namespace CarAndHorseStore.Core.System
 
             var user = (Client)loggedUser;
 
-            //
+            /*
             //Ciało właściwej funkcji
             //            
            
@@ -137,7 +137,8 @@ namespace CarAndHorseStore.Core.System
             for (int i = 0; i < intParams[1]; i++)
             {
                 //user.Cart.Products.Remove(product);
-            }   
+            }
+             */
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductRemovedFromCart);
 
         }

@@ -18,7 +18,7 @@ namespace CarAndHorseStore
         static void Main(string[] args)
         {
             
-            
+            //TODO Zastosować Ninject!!!
             IUserBaseRepository userBaseRepository= new UserBaseRepository();
             IProductRepository productRepository = new ProductRepository();
 

@@ -7,7 +7,8 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
 {
     public class Cart
     {
-        private const string EmptyCart = "Koszyk jest pusty";
+        private const string emptyCart = "Koszyk jest pusty";
+        private const string cartContent = "Zawartość koszyka:\n";
         public List<Product> Products { get; set; }
 
         public Cart()
@@ -18,9 +19,9 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
         {
             if (Products==null||Products.Count==0)
             {
-                return EmptyCart;
+                return emptyCart;
             }
-            string cart = "Zawartość koszyka:\n";
+            string cart = cartContent;
             foreach (var product in Products)
             {
                 cart += product.Id + product.Description +"\n";

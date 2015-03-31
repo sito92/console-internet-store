@@ -13,7 +13,7 @@ namespace CarAndHorseStore.Core.CommandParser
     public class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
-
+        private const string cleaned = "Wyczyszczono";
         //private IRepository rep;
 
 
@@ -88,7 +88,7 @@ namespace CarAndHorseStore.Core.CommandParser
         private string Cls(List<string> parameters)
         {
             Console.Clear();
-            return "Wyczyszczono";
+            return cleaned;
         }
         private bool IsCommandOperate(string keyword)
         {

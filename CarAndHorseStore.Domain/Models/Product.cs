@@ -16,5 +16,11 @@ namespace CarAndHorseStore.Domain.Models
         public int ColorId { get; set; }
         public Color Color { get; set; }
         public float Price { get; set; }
+
+        public string ToString()
+        {
+            return Id.ToString + " " + Name + " " + Description;
+        }
+
     }
 }

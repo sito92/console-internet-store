@@ -71,27 +71,26 @@ namespace CarAndHorseStore.Core.CommandParser
 
         public string ParseCommand(string command)
         {
-            SystemWorkingSwitch();
-            if (IsParsing)
+            
+            if (!IsParsing) return notStarted;
+            if (String.IsNullOrEmpty(command))
             {
-                if (String.IsNullOrEmpty(command))
-                {
-                    return command;
-                }
-                var keyWord = command.GetKeyWord();
-                var parameters = command.GetParameters();
-
-
-                if (!IsCommandOperate(keyWord))
-                {
-                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
-                }
-
-                return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
-                    ? comandsDictionary[keyWord].commandDelegate(parameters)
-                    : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+                return command;
             }
-            return notStarted;
+            var keyWord = command.GetKeyWord();
+            var parameters = command.GetParameters();
+
+
+            if (!IsCommandOperate(keyWord))
+            {
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
+            }
+
+            if (!comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count))
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+            var result = comandsDictionary[keyWord].commandDelegate(parameters);
+            SystemWorkingSwitch();
+            return result;
         }
 
         public void Start()

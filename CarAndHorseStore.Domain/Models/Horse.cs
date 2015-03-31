@@ -12,5 +12,12 @@ namespace CarAndHorseStore.Domain.Models
 
         public virtual Sex Sex { get; set; }
 
+        public override string ToString()
+        {
+            var result = base.ToString();
+            return result + " " + Breed.Name + " " + Sex.Name;
+
+        }
+
     }
 }

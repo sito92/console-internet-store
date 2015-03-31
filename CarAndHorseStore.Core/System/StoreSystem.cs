@@ -20,14 +20,20 @@ namespace CarAndHorseStore.Core.System
         private UserBase loggedUser;
         private IUserBaseRepository userBaseRepository;
         private IProductRepository productRepository;
- 
-        public bool IsWorking { get; protected set; }
+
+        public void Start()
+        {
+            IsWorking = true;
+            productRepository.Open();
+        }
+
+        public bool IsWorking { get; set; }
 
         public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
         {
             userBaseRepository = urepository;
             productRepository = pRepository;
-            IsWorking = true;
+            IsWorking = false;
         }
         #region FunctinalitiesMethods
         public string LogInUser(List<string> parameters)
@@ -101,7 +107,7 @@ namespace CarAndHorseStore.Core.System
 
                        
          
-           user.Cart.Products.AddRange(product,intParams[0]);
+           user.Cart.Products.AddRange(product,intParams[1]);
                              
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToCart);
         }

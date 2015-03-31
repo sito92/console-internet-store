@@ -7,34 +7,25 @@ using CarAndHorseStore.Core.System.Helpers;
 using CarAndHorseStore.Domain.Models;
 using CarAndHorseStore.Domain.Repository;
 using CarAndHorseStore.Domain.Repository.Interfaces;
+using CarAndHorseStore.Infrastructure;
 using Ninject;
 
 namespace CarAndHorseStore
 {
     class Program
     {
-        private const string connected = "Połączono";
-        private const string connecting = "Łączenie...";
         static void Main(string[] args)
         {
-            
-            //TODO Zastosować Ninject!!!
-            IUserBaseRepository userBaseRepository= new UserBaseRepository();
-            IProductRepository productRepository = new ProductRepository();
+            var container = new NinjectContainer();
 
-            Console.WriteLine(connecting);
-            userBaseRepository.Open();
-            Console.WriteLine(connected);
 
-            var system = new StoreSystem(userBaseRepository,productRepository);
-
-            var commandPArser = new CommandParser(system);
-
-            while (system.IsWorking)
+            var commandParser = container.Get<CommandParser>();
+            commandParser.Start();
+            while (commandParser.IsParsing)
             {
-                Console.WriteLine(commandPArser.ParseCommand(Console.ReadLine()));
+                Console.WriteLine(commandParser.ParseCommand(Console.ReadLine()));
 
-                if (!system.IsWorking)
+                if (!commandParser.IsParsing)
                 {
                     Console.ReadKey();
                 }

@@ -14,16 +14,20 @@ namespace CarAndHorseStore.Core.CommandParser
     {
         private IStoreSystem storeSystem;
         private const string cleaned = "Wyczyszczono";
+        private const string connected = "Połączono";
+        private const string connecting = "Łączenie...";
+        private const string notStarted = "System nie wsytartował";
+        public bool IsParsing { get; set; }
         //private IRepository rep;
 
 
 
-        private Dictionary<string, Command> comandsDictionary = new Dictionary
-            <string, Command>();
+        private Dictionary<string, Command> comandsDictionary = new Dictionary<string, Command>();
 
 
         public CommandParser(IStoreSystem system)
         {
+
             storeSystem = system;
             InitializeCommands();
         }
@@ -34,7 +38,7 @@ namespace CarAndHorseStore.Core.CommandParser
             comandsDictionary.Add("login",
                 new Command() { commandDelegate = storeSystem.LogInUser, properParametersAmmount = new List<int>() { 2 } });
             comandsDictionary.Add("whoami",
-                new Command() { commandDelegate = storeSystem.WhoAmI, properParametersAmmount = new List<int>() { 1, 2 } });
+                new Command() { commandDelegate = storeSystem.WhoAmI, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("exit",
                 new Command() { commandDelegate = storeSystem.Exit, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("logout",
@@ -67,22 +71,37 @@ namespace CarAndHorseStore.Core.CommandParser
 
         public string ParseCommand(string command)
         {
-            if (String.IsNullOrEmpty(command))
+            SystemWorkingSwitch();
+            if (IsParsing)
             {
-                return command;
+                if (String.IsNullOrEmpty(command))
+                {
+                    return command;
+                }
+                var keyWord = command.GetKeyWord();
+                var parameters = command.GetParameters();
+
+
+                if (!IsCommandOperate(keyWord))
+                {
+                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
+                }
+
+                return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
+                    ? comandsDictionary[keyWord].commandDelegate(parameters)
+                    : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
             }
-            var keyWord = command.GetKeyWord();
-            var parameters = command.GetParameters();
+            return notStarted;
+        }
 
-
-            if (!IsCommandOperate(keyWord))
-            {
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
-            }
-
-            return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
-                ? comandsDictionary[keyWord].commandDelegate(parameters)
-                : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+        public void Start()
+        {
+            Console.WriteLine(connecting);
+            storeSystem.Start();
+            SystemWorkingSwitch();
+            Console.WriteLine(connected);
+            
+            
         }
 
         private string Cls(List<string> parameters)
@@ -95,5 +114,9 @@ namespace CarAndHorseStore.Core.CommandParser
             return comandsDictionary.ContainsKey(keyword);
         }
 
+        private void SystemWorkingSwitch()
+        {
+            IsParsing = storeSystem.IsWorking;
+        }
     }
 }

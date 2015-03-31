@@ -16,7 +16,7 @@ namespace CarAndHorseStore.Core.System
 {
     public class StoreSystem : IStoreSystem
     {
-        private string CheckCommunicate;
+        private string checkCommunicate;
         private UserBase loggedUser;
         private IUserBaseRepository userBaseRepository;
         private IProductRepository productRepository;
@@ -50,7 +50,7 @@ namespace CarAndHorseStore.Core.System
 
         public string LogOutUser(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
             loggedUser = null;
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LogoutAccepted);
         }
@@ -71,8 +71,8 @@ namespace CarAndHorseStore.Core.System
         public string AddProductToCart(List<string> parameters)
         {
             
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
             List<int> intParams = new List<int>(parameters.Count);
             for (int i = 0; i < parameters.Count; i++)
@@ -100,17 +100,16 @@ namespace CarAndHorseStore.Core.System
             if (product == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
                        
-            for (int i = 0; i < intParams[1]; i++)
-            {
-                user.Cart.Products.Add(product);
-            }                   
+         
+           user.Cart.Products.AddRange(product,intParams[0]);
+                             
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToCart);
         }
 
         public string RemoveProductFromCart(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
             List<int> intParams = new List<int>(parameters.Count);
             for (int i = 0; i < parameters.Count; i++)
@@ -145,8 +144,8 @@ namespace CarAndHorseStore.Core.System
 
         public string CheckOut(List<string> parameters)   
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
             var user = (Client)loggedUser;
 
@@ -164,8 +163,8 @@ namespace CarAndHorseStore.Core.System
 
         public string ShowProductInfo(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
 
             //
@@ -177,16 +176,16 @@ namespace CarAndHorseStore.Core.System
 
         public string CreateUser(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (!CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NewUserCreated);
         }
 
         public string AddProductToShop(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (!CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
             //
             //Ciało właściwej funkcji
@@ -197,8 +196,8 @@ namespace CarAndHorseStore.Core.System
 
         public string DeleteProduct(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (!CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
             int id;
             if (Int32.TryParse(parameters[0], out id))
@@ -215,8 +214,8 @@ namespace CarAndHorseStore.Core.System
 
         public string UpdateProduct(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (!CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (!CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
 
             //
@@ -247,8 +246,8 @@ namespace CarAndHorseStore.Core.System
         #region ShowMethods
         public string ShowCart(List<string> parameters)
         {
-            if (CheckIfLogged(out CheckCommunicate)) return CheckCommunicate;
-            if (CheckIfNotAdmin(out CheckCommunicate)) return CheckCommunicate;
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
             var user = (Client)loggedUser;
 
             return user.Cart == null ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart) : user.Cart.ToString();
@@ -257,7 +256,7 @@ namespace CarAndHorseStore.Core.System
         public string ShowHorsesBy(List<string> parameters)
         {
             Dictionary<string, string> filtersDictionary;
-            if (FilterCheck<Horse>(parameters, out filtersDictionary, out CheckCommunicate)) return CheckCommunicate;
+            if (FilterCheck<Horse>(parameters, out filtersDictionary, out checkCommunicate)) return checkCommunicate;
 
             try
             {
@@ -280,7 +279,7 @@ namespace CarAndHorseStore.Core.System
         public string ShowCarsBy(List<string> parameters)
         {
             Dictionary<string, string> filtersDictionary;
-            if (FilterCheck<Car>(parameters, out filtersDictionary, out CheckCommunicate)) return CheckCommunicate;
+            if (FilterCheck<Car>(parameters, out filtersDictionary, out checkCommunicate)) return checkCommunicate;
 
             try
             {

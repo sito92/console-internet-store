@@ -14,18 +14,15 @@ namespace CarAndHorseStore
     class Program
     {
         private const string connected = "Połączono";
+        private const string connecting = "Łączenie...";
         static void Main(string[] args)
         {
-
-           // IKernel ninjectKernel = new StandardKernel();
-
-            //HorsePropertiesCheckTest();
             
             
             IUserBaseRepository userBaseRepository= new UserBaseRepository();
             IProductRepository productRepository = new ProductRepository();
-            //productRepository.Add(new Car(){BodyTypeId = 1,BrandId =1,ColorId = 2,Description = "sfdsf",EngineTypeId = 1,Name = "afasd",Price = 5});
-           // productRepository.SaveChanges();
+
+            Console.WriteLine(connecting);
             userBaseRepository.Open();
             Console.WriteLine(connected);
 

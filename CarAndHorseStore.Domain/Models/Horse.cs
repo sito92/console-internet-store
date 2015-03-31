@@ -7,10 +7,10 @@ namespace CarAndHorseStore.Domain.Models
 
         public int BreedId { get; set; }
         public int SexId { get; set; }
-        public Breed Breed { get; set; }
+        public virtual Breed Breed { get; set; }
 
 
-        public Sex Sex { get; set; }
+        public virtual Sex Sex { get; set; }
 
     }
 }

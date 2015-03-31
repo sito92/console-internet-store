@@ -13,17 +13,21 @@ namespace CarAndHorseStore.Core.CommandParser
     public class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
-
+        private const string cleaned = "Wyczyszczono";
+        private const string connected = "Połączono";
+        private const string connecting = "Łączenie...";
+        private const string notStarted = "System nie wsytartował";
+        public bool IsParsing { get; set; }
         //private IRepository rep;
 
 
 
-        private Dictionary<string, Command> comandsDictionary = new Dictionary
-            <string, Command>();
+        private Dictionary<string, Command> comandsDictionary = new Dictionary<string, Command>();
 
 
         public CommandParser(IStoreSystem system)
         {
+
             storeSystem = system;
             InitializeCommands();
         }
@@ -34,46 +38,85 @@ namespace CarAndHorseStore.Core.CommandParser
             comandsDictionary.Add("login",
                 new Command() { commandDelegate = storeSystem.LogInUser, properParametersAmmount = new List<int>() { 2 } });
             comandsDictionary.Add("whoami",
-                new Command() { commandDelegate = storeSystem.WhoAmI, properParametersAmmount = new List<int>() { 1, 2 } });
+                new Command() { commandDelegate = storeSystem.WhoAmI, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("exit",
                 new Command() { commandDelegate = storeSystem.Exit, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("logout",
-                new Command() { commandDelegate = storeSystem.LogOutUSer, properParametersAmmount = new List<int>() { 0 } });
+                new Command() { commandDelegate = storeSystem.LogOutUser, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("cls",
                 new Command() { commandDelegate = this.Cls, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("add",
-               new Command() { commandDelegate = storeSystem.Add, properParametersAmmount = new List<int>() { 2 } });
+               new Command() { commandDelegate = storeSystem.AddProductToCart, properParametersAmmount = new List<int>() { 2 } });
+            comandsDictionary.Add("remove",
+             new Command() { commandDelegate = storeSystem.RemoveProductFromCart, properParametersAmmount = new List<int>() { 2 } }); 
             comandsDictionary.Add("showcart",
                new Command() { commandDelegate = storeSystem.ShowCart, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("showhorsesby",
              new Command() { commandDelegate = storeSystem.ShowHorsesBy, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("showcarsby",
+             new Command() { commandDelegate = storeSystem.ShowCarsBy, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("checkout",
+             new Command() { commandDelegate = storeSystem.CheckOut, properParametersAmmount = new List<int>() { 0 } });
+            comandsDictionary.Add("info",
+             new Command() { commandDelegate = storeSystem.ShowProductInfo, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("create",
+             new Command() { commandDelegate = storeSystem.CreateUser, properParametersAmmount = new List<int>() { 3 } });
+            comandsDictionary.Add("addproduct",
+             new Command() { commandDelegate = storeSystem.AddProductToShop, properParametersAmmount = new List<int>() { 5 } }); 
+            comandsDictionary.Add("deleteproduct",
+             new Command() { commandDelegate = storeSystem.DeleteProduct, properParametersAmmount = new List<int>() { 1 } });
+            comandsDictionary.Add("updateproduct",
+             new Command() { commandDelegate = storeSystem.UpdateProduct, properParametersAmmount = new List<int>() { 2, 3, 4, 5 } });  //TODO przemyslenie        
         }
 
         public string ParseCommand(string command)
         {
-            var keyWord = command.GetKeyWord();
-            var parameters = command.GetParameters();
-
-
-            if (!IsCommandOperate(keyWord))
+            SystemWorkingSwitch();
+            if (IsParsing)
             {
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
-            }
+                if (String.IsNullOrEmpty(command))
+                {
+                    return command;
+                }
+                var keyWord = command.GetKeyWord();
+                var parameters = command.GetParameters();
 
-            return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
-                ? comandsDictionary[keyWord].commandDelegate(parameters)
-                : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+
+                if (!IsCommandOperate(keyWord))
+                {
+                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
+                }
+
+                return comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count)
+                    ? comandsDictionary[keyWord].commandDelegate(parameters)
+                    : CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+            }
+            return notStarted;
+        }
+
+        public void Start()
+        {
+            Console.WriteLine(connecting);
+            storeSystem.Start();
+            SystemWorkingSwitch();
+            Console.WriteLine(connected);
+            
+            
         }
 
         private string Cls(List<string> parameters)
         {
             Console.Clear();
-            return "Wyczyszczono";
+            return cleaned;
         }
         private bool IsCommandOperate(string keyword)
         {
             return comandsDictionary.ContainsKey(keyword);
         }
 
+        private void SystemWorkingSwitch()
+        {
+            IsParsing = storeSystem.IsWorking;
+        }
     }
 }

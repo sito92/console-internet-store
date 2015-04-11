@@ -20,7 +20,8 @@ namespace CarAndHorseStore.Core.System
         private UserBase loggedUser;
         private IUserBaseRepository userBaseRepository;
         private IProductRepository productRepository;
-
+        private IOrderRepository orderRepository;
+        private ShopDbContext dbContext;
         public void Start()
         {
             IsWorking = true;
@@ -31,6 +32,7 @@ namespace CarAndHorseStore.Core.System
 
         public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
         {
+            dbContext = new ShopDbContext();
             userBaseRepository = urepository;
             productRepository = pRepository;
             IsWorking = false;
@@ -176,6 +178,23 @@ namespace CarAndHorseStore.Core.System
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart);
             }
 
+            var order = new Order() { Client = user };
+            var productLists = new List<ProductList>();
+            foreach (var product in user.Cart.Products)
+            {
+                if (productLists.Exists(x=>x.ProductId==product.Id))
+                {
+                    var productList = productLists.Find(x => x.ProductId == product.Id);
+                    productList.Amount++;
+                }
+                else
+                {
+                    productLists.Add(new ProductList(){Amount = 1,Order = order,ProductId = product.Id});
+                }
+            }
+            dbContext.Orders.Add(order);
+            dbContext.ProductLists.AddRange(productLists);
+            dbContext.SaveChanges();
             //
             //Ciało właściwej funkcji
             // 

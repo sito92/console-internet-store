@@ -81,6 +81,7 @@
     <Compile Include="Repository\Interfaces\IOrderRepository.cs" />
     <Compile Include="Repository\Interfaces\IEngineTypeRepository.cs" />
     <Compile Include="Repository\Interfaces\IHorseRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProductListRepository.cs" />
     <Compile Include="Repository\Interfaces\IProductRepository.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />
     <Compile Include="Repository\Interfaces\IUserBaseRepository.cs" />

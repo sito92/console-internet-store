@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
+
 using System.Runtime.Remoting.Lifetime;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.CommandParser.Role;
@@ -22,6 +24,7 @@ namespace CarAndHorseStore.Core.System
         private IProductRepository productRepository;
         private IOrderRepository orderRepository;
         private ShopDbContext dbContext;
+        private SoundPlayer player;
         public void Start()
         {
             IsWorking = true;
@@ -29,6 +32,7 @@ namespace CarAndHorseStore.Core.System
         }
 
         public bool IsWorking { get; set; }
+      
 
         public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
         {
@@ -264,6 +268,13 @@ namespace CarAndHorseStore.Core.System
             // 
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.UpdatedProductInfo);
+        }
+
+        public string Play(List<string> parameters)
+        {
+            player = new SoundPlayer(parameters[0]);
+            player.Play();
+            return "gra";
         }
         #endregion
         #region CheckMethods

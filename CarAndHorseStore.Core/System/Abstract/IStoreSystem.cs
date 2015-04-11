@@ -23,5 +23,8 @@ namespace CarAndHorseStore.Core.System.Abstract
             void Start();
          bool IsWorking { get; set; }
 
+        string Play(List<string> parameters);
+
+
     }
 }

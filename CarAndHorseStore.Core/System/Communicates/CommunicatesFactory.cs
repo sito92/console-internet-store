@@ -48,7 +48,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.NewUserCreatedFail,"Dodanie nowego użytkownika nie powiodło się. Proszę spróbować ponownie. "},
             {CommunicatesKinds.ProductAddedToShopFail, "Dodanie produktu do sklepu nie powiodło się. Proszę spróbować ponownie. "},
             {CommunicatesKinds.ProductDeltedFromShopFail, "Usunięcie produktu ze sklepu nie powiodło się. Proszę spróbować ponownie. "},
-            {CommunicatesKinds.UpdatedProductInfoFail, "Aktualizacja informaji o produkcie nie powiodła się. Proszę spróbować ponownie. "}
+            {CommunicatesKinds.UpdatedProductInfoFail, "Aktualizacja informacji o produkcie nie powiodła się. Proszę spróbować ponownie. "}
 
         };
 

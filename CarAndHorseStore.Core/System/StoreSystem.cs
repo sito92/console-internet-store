@@ -94,6 +94,7 @@ namespace CarAndHorseStore.Core.System
                 }
             }
             var id = intParams[0];
+            var ammount = intParams[1];
 
             var user = (Client)loggedUser;
 
@@ -132,19 +133,33 @@ namespace CarAndHorseStore.Core.System
             }
 
             var id = intParams[0];
+            var ammount = intParams[1];
 
             var user = (Client)loggedUser;
 
-            /*
-            //Ciało właściwej funkcji
-            //            
-           
 
-            for (int i = 0; i < intParams[1]; i++)
+            if (user.Cart == null || user.Cart.Products.Count()==0)
             {
-                //user.Cart.Products.Remove(product);
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart);
             }
-             */
+
+            if (user.Cart.Products.Exists(x=>x.Id==id))
+            {
+                var product = user.Cart.Products.Find(x => x.Id == id);
+                for (int i = 0; i < ammount; i++)
+                {
+                    if (product!=null)
+                    {
+                        user.Cart.Products.Remove(product);
+                    }
+                   
+                }                              
+            }
+            else
+            {
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
+            }
+
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductRemovedFromCart);
 
         }

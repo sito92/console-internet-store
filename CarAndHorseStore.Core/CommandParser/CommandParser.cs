@@ -16,7 +16,7 @@ namespace CarAndHorseStore.Core.CommandParser
         private const string cleaned = "Wyczyszczono";
         private const string connected = "Połączono";
         private const string connecting = "Łączenie...";
-        private const string notStarted = "System nie wsytartował";
+        private const string notStarted = "System nie wystartował";
         public bool IsParsing { get; set; }
         //private IRepository rep;
 

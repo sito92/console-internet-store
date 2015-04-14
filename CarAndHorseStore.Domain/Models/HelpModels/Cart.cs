@@ -26,6 +26,8 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
             foreach (var product in Products)
             {
                 cart += product.Id + product.Description +"\n";
+                //czemu nie działa?!
+                //cart += product.ToString() + "\n";
             }
             return cart;
 

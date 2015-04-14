@@ -16,7 +16,6 @@ namespace CarAndHorseStore.Domain.Models
         {
             var result = base.ToString();
             return result + " " + Breed.Name + " " + Sex.Name;
-
         }
 
     }

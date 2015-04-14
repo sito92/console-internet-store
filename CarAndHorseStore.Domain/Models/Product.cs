@@ -17,10 +17,9 @@ namespace CarAndHorseStore.Domain.Models
         public virtual Color Color { get; set; }
         public float Price { get; set; }
 
-        public override string  ToString()
+        public override string ToString()
         {
-            return Id.ToString() +" "+ Name +" "+ Description +" "+ Price +" "+ Color;
-            
+            return Id.ToString() +" "+ Name +" "+ Description +" "+ Price +" "+ Color.Name;
         }
     }
 }

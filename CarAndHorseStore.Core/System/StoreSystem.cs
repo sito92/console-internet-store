@@ -7,6 +7,8 @@ using System.Runtime.Remoting.Lifetime;
 using CarAndHorseStore.Core.CommandParser.Communicates;
 using CarAndHorseStore.Core.CommandParser.Role;
 using CarAndHorseStore.Core.Extensions;
+using CarAndHorseStore.Core.Music;
+using CarAndHorseStore.Core.Properties;
 using CarAndHorseStore.Core.System.Abstract;
 using CarAndHorseStore.Core.System.Exeptions;
 using CarAndHorseStore.Core.System.Helpers;
@@ -57,6 +59,9 @@ namespace CarAndHorseStore.Core.System
             if (user.Password != password)
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectPassword);
             loggedUser = user;
+
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoginAccepted);
         }
 
@@ -115,7 +120,9 @@ namespace CarAndHorseStore.Core.System
                        
          
            user.Cart.Products.AddRange(product,intParams[1]);
-                             
+
+           Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+      
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToCart);
         }
 
@@ -203,6 +210,8 @@ namespace CarAndHorseStore.Core.System
             //Ciało właściwej funkcji
             // 
 
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.OrderIsInProgress);
         }
 
@@ -270,11 +279,13 @@ namespace CarAndHorseStore.Core.System
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.UpdatedProductInfo);
         }
 
-        public string Play(List<string> parameters)
+        public void Play(string methodName)
         {
-            player = new SoundPlayer(parameters[0]);
+            var musicManager = new MusicManager();
+
+            var selectedSound = Resources.ResourceManager.GetStream(musicManager.MusicDictionary[methodName]);
+            player = new SoundPlayer(selectedSound);
             player.Play();
-            return "gra";
         }
         #endregion
         #region CheckMethods

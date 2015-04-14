@@ -17,10 +17,11 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
         }
         public override string ToString()
         {
-            if (Products==null||Products.Count==0)
+            if (Products==null || Products.Count==0)
             {
                 return emptyCart;
             }
+
             string cart = cartContent;
             foreach (var product in Products)
             {

@@ -20,8 +20,7 @@ namespace CarAndHorseStore.Domain.Models
         public override string ToString()
         {
             var result = base.ToString();             
-            return result+" " +Brand.Name+" "+BodyType.Name+" "+EngineType.CylinderAmount.ToString()+ " " + EngineType.EngineCapacity.ToString();
-            
+            return result+" " +Brand.Name+" "+BodyType.Name+" "+EngineType.CylinderAmount+ " " + EngineType.EngineCapacity;   
         }
 
     }

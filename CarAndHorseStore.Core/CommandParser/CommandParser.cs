@@ -68,7 +68,9 @@ namespace CarAndHorseStore.Core.CommandParser
             comandsDictionary.Add("updateproduct",
              new Command() { commandDelegate = storeSystem.UpdateProduct, properParametersAmmount = new List<int>() { 2, 3, 4, 5 } });  //TODO przemyslenie 
             //comandsDictionary.Add("play",
-            // new Command() { commandDelegate = storeSystem.Play, properParametersAmmount = new List<int>() {0} }); 
+            // new Command() { commandDelegate = storeSystem.Play, properParametersAmmount = new List<int>() {0} });
+           comandsDictionary.Add("stop",
+               new Command() {commandDelegate = storeSystem.Stop, properParametersAmmount = new List<int>() { 0} });
         }
 
         public string ParseCommand(string command)

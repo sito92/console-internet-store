@@ -24,7 +24,7 @@ namespace CarAndHorseStore.Core.System.Abstract
          bool IsWorking { get; set; }
 
         void Play(string parameters);
-
+        string Stop(List<string> parameters);
 
     }
 }

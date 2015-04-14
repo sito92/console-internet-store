@@ -287,6 +287,12 @@ namespace CarAndHorseStore.Core.System
             player = new SoundPlayer(selectedSound);
             player.Play();
         }
+
+        public string Stop(List<string> parameters)
+        {
+            player.Stop();
+            return "Zatrzymano. Troche szkoda";
+        }
         #endregion
         #region CheckMethods
 

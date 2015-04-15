@@ -69,11 +69,16 @@ namespace CarAndHorseStore.Core.System
         {
             if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
             loggedUser = null;
+
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.LogoutAccepted);
         }
 
         public string WhoAmI(List<string> parameters)
         {
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             return loggedUser != null
                 ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAs) + loggedUser.Name
                 : CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
@@ -81,6 +86,7 @@ namespace CarAndHorseStore.Core.System
 
         public string Exit(List<string> parameters = null)
         {
+
             IsWorking = false;
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.Thanks);
         }
@@ -173,6 +179,8 @@ namespace CarAndHorseStore.Core.System
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
             }
 
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductRemovedFromCart);
 
         }
@@ -224,6 +232,7 @@ namespace CarAndHorseStore.Core.System
             //
             //Ciało właściwej funkcji
             // 
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             return "Na razie bez opisu";
         }
@@ -262,6 +271,8 @@ namespace CarAndHorseStore.Core.System
             {
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter);
             }
+
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductDeltedFromShop);
         }

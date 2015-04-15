@@ -96,6 +96,30 @@
   <ItemGroup>
     <None Include="Music\wybranie_produktu.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\czyszczenie_ekranu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edycja_produktu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\informacje_o_produkcie.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kim_jestem.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuniecie_produktu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wybranie_produktu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wylogowanie.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zawartosc_koszyka.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

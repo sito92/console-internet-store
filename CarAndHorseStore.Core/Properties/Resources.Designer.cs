@@ -63,9 +63,54 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream czyszczenie_ekranu {
+            get {
+                return ResourceManager.GetStream("czyszczenie_ekranu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream edycja_produktu {
+            get {
+                return ResourceManager.GetStream("edycja_produktu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream informacje_o_produkcie {
+            get {
+                return ResourceManager.GetStream("informacje_o_produkcie", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream kim_jestem {
+            get {
+                return ResourceManager.GetStream("kim_jestem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static global::System.IO.UnmanagedMemoryStream koniec {
             get {
                 return ResourceManager.GetStream("koniec", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream usuniecie_produktu {
+            get {
+                return ResourceManager.GetStream("usuniecie_produktu", resourceCulture);
             }
         }
         
@@ -81,10 +126,27 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream wybranie_produktu
-        {
+        internal static global::System.IO.UnmanagedMemoryStream wybranie_produktu {
             get {
                 return ResourceManager.GetStream("wybranie_produktu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream wylogowanie {
+            get {
+                return ResourceManager.GetStream("wylogowanie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static global::System.IO.UnmanagedMemoryStream zawartosc_koszyka {
+            get {
+                return ResourceManager.GetStream("zawartosc_koszyka", resourceCulture);
             }
         }
     }

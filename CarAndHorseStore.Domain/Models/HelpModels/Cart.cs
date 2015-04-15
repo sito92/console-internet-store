@@ -27,7 +27,8 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
             {
                 cart += product.Id + product.Description +"\n";
                 //czemu nie działa?!
-                //cart += product.ToString() + "\n";
+                //if(!cart.Contains(product.Id.ToString()))
+                   //cart += product.ToString() + "\n";
             }
             return cart;
 

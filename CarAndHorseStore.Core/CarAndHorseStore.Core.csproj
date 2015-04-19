@@ -88,15 +88,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Music\witamy.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Music\koniec.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Music\wybranie_produktu.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\czyszczenie_ekranu.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +110,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zawartosc_koszyka.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Music\Tracks\czyszczenie_ekranu.wav" />
+    <Content Include="Music\Tracks\edycja_produktu.wav" />
+    <Content Include="Music\Tracks\informacje_o_produkcie.wav" />
+    <Content Include="Music\Tracks\kim_jestem.wav" />
+    <Content Include="Music\Tracks\koniec.wav" />
+    <Content Include="Music\Tracks\usuniecie_produktu.wav" />
+    <Content Include="Music\Tracks\witamy.wav" />
+    <Content Include="Music\Tracks\wybranie_produktu.wav" />
+    <Content Include="Music\Tracks\wylogowanie.wav" />
+    <Content Include="Music\Tracks\zawartosc_koszyka.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

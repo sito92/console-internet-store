@@ -63,7 +63,8 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream czyszczenie_ekranu {
+        internal static global::System.IO.UnmanagedMemoryStream czyszczenie_ekranu
+        {
             get {
                 return ResourceManager.GetStream("czyszczenie_ekranu", resourceCulture);
             }
@@ -81,16 +82,18 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream informacje_o_produkcie {
+        internal static global::System.IO.UnmanagedMemoryStream informacje_o_produkcie
+        {
             get {
                 return ResourceManager.GetStream("informacje_o_produkcie", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream kim_jestem {
+        internal static global::System.IO.UnmanagedMemoryStream kim_jestem
+        {
             get {
                 return ResourceManager.GetStream("kim_jestem", resourceCulture);
             }
@@ -99,16 +102,18 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream koniec {
+        internal static global::System.IO.UnmanagedMemoryStream koniec
+        {
             get {
                 return ResourceManager.GetStream("koniec", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream usuniecie_produktu {
+        internal static global::System.IO.UnmanagedMemoryStream usuniecie_produktu
+        {
             get {
                 return ResourceManager.GetStream("usuniecie_produktu", resourceCulture);
             }
@@ -117,7 +122,8 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream witamy {
+        internal static global::System.IO.UnmanagedMemoryStream witamy
+        {
             get {
                 return ResourceManager.GetStream("witamy", resourceCulture);
             }
@@ -135,7 +141,8 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream wylogowanie {
+        internal static global::System.IO.UnmanagedMemoryStream wylogowanie
+        {
             get {
                 return ResourceManager.GetStream("wylogowanie", resourceCulture);
             }
@@ -144,7 +151,8 @@ namespace CarAndHorseStore.Core.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static global::System.IO.UnmanagedMemoryStream zawartosc_koszyka {
+        internal static global::System.IO.UnmanagedMemoryStream zawartosc_koszyka
+        {
             get {
                 return ResourceManager.GetStream("zawartosc_koszyka", resourceCulture);
             }

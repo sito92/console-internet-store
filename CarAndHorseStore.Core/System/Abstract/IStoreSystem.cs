@@ -20,6 +20,7 @@ namespace CarAndHorseStore.Core.System.Abstract
          string DeleteProduct(List<string> parameters);
          string UpdateProduct(List<string> parameters);  
          string Exit(List<string> parameters);
+         string Cls(List<string> parameters);
             void Start();
          bool IsWorking { get; set; }
 

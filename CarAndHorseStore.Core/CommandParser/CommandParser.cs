@@ -13,7 +13,6 @@ namespace CarAndHorseStore.Core.CommandParser
     public class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
-        private const string cleaned = "Wyczyszczono";
         private const string connected = "Połączono";
         private const string connecting = "Łączenie...";
         private const string notStarted = "System nie wystartował";
@@ -44,7 +43,7 @@ namespace CarAndHorseStore.Core.CommandParser
             comandsDictionary.Add("logout",
                 new Command() { commandDelegate = storeSystem.LogOutUser, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("cls",
-                new Command() { commandDelegate = this.Cls, properParametersAmmount = new List<int>() { 0 } });
+                new Command() { commandDelegate = storeSystem.Cls, properParametersAmmount = new List<int>() { 0 } });
             comandsDictionary.Add("add",
                new Command() { commandDelegate = storeSystem.AddProductToCart, properParametersAmmount = new List<int>() { 2 } });
             comandsDictionary.Add("remove",
@@ -107,11 +106,6 @@ namespace CarAndHorseStore.Core.CommandParser
             
         }
 
-        private string Cls(List<string> parameters)
-        {
-            Console.Clear();
-            return cleaned;
-        }
         private bool IsCommandOperate(string keyword)
         {
             return comandsDictionary.ContainsKey(keyword);

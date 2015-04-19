@@ -27,6 +27,9 @@ namespace CarAndHorseStore.Core.System
         private IOrderRepository orderRepository;
         private ShopDbContext dbContext;
         private SoundPlayer player;
+        private const string cleaned = "Wyczyszczono";
+        private const string somePeasantStoppedMusic = "Zatrzymano. Troche szkoda";
+
         public void Start()
         {
             IsWorking = true;
@@ -302,7 +305,7 @@ namespace CarAndHorseStore.Core.System
         public string Stop(List<string> parameters)
         {
             player.Stop();
-            return "Zatrzymano. Troche szkoda";
+            return somePeasantStoppedMusic;
         }
         #endregion
         #region CheckMethods
@@ -331,6 +334,14 @@ namespace CarAndHorseStore.Core.System
             var user = (Client)loggedUser;
 
             return user.Cart == null ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart) : user.Cart.ToString();
+        }
+
+        public string Cls(List<string> parameters)
+        {
+            Console.Clear();
+
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+            return cleaned;
         }
 
         public string ShowHorsesBy(List<string> parameters)

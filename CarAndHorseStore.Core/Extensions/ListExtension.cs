@@ -18,27 +18,10 @@ namespace CarAndHorseStore.Core.Extensions
             list.AddRange(repeat);
         }
 
-        public static string ListToString<T>(this List<T> list) where T : class 
+        public static string HorsesToString(List<Horse> horses)
         {
-            if (list == null || list.Count == 0)
+            if (horses == null || horses.Count == 0)
                 return emptyProductlist;
-
-            var prefix = typeof (T);
-            string listContent = "";
-            
-            foreach (var prod in list)
-            {
-                var props = prod.GetType().GetProperties();
-
-                foreach (var prop in props)
-                {
-                    if (!listContent.Contains(prod.ToString())) // tu wymysl cos lepszego. bo to nie zadziala, nie?
-                    {
-                        listContent += prop.Name + ":" + prop.GetValue(prod,null);
-                    }
-                }
-            }
-            return prefix + listContent;
         }
     }
 }

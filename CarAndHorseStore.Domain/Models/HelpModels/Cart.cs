@@ -25,10 +25,12 @@ namespace CarAndHorseStore.Domain.Models.HelpModels
             string cart = cartContent;
             foreach (var product in Products)
             {
-                cart += product.Id + product.Description +"\n";
+               // cart += product.Id + product.Description +"\n";
                 //czemu nie działa?!
-                //if(!cart.Contains(product.Id.ToString()))
-                   //cart += product.ToString() + "\n";
+
+                var amount = Products.FindAll(x => x.Id == product.Id).Count;
+  
+                   cart += product + "\n";
             }
             return cart;
 

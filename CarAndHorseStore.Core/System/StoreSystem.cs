@@ -38,7 +38,7 @@ namespace CarAndHorseStore.Core.System
 
         public bool IsWorking { get; set; }
       
-
+       
         public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
         {
             dbContext = new ShopDbContext();
@@ -358,9 +358,14 @@ namespace CarAndHorseStore.Core.System
                 if (filtredHorses.Count() == 0)
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
+                /*
                 var stringresult = filtredHorses.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.Found),
                     (current, horse) => current + (horse.ToString() + "\n"));
-                return stringresult;
+                 */
+
+                var list = filtredHorses.ToList();
+                
+                return list.ListToString();
             }
             catch (InvalidValueExeption ex)
             {
@@ -445,7 +450,7 @@ namespace CarAndHorseStore.Core.System
             filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
             if (filtersDictionary == null)
             {
-                CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
+               CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
                 return true;
             }
 

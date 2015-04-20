@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Media;
 
@@ -289,13 +290,13 @@ namespace CarAndHorseStore.Core.System
                 BreedId = Convert.ToInt32(parameters[4]),
                 SexId = Convert.ToInt32(parameters[5]),
             };
-            
-            if(ValidationHelper.isValid(horse))
-            { 
-            dbContext.Products.Add(horse);
-            dbContext.SaveChanges();
 
-            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShop);
+            if (ValidationHelper.isValid(horse))
+            {
+                dbContext.Products.Add(horse);
+                dbContext.SaveChanges();
+
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShop);
             }
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShopFail);
@@ -309,16 +310,20 @@ namespace CarAndHorseStore.Core.System
             int id;
             if (Int32.TryParse(parameters[0], out id))
             {
-                //funkcja usuwająca produktu ze sklepu
-            }
-            else
-            {
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter);
+                var product = dbContext.Products.Where(x => x.Id == id).FirstOrDefault();
+
+                if (product != null)
+                {
+                    dbContext.Products.Remove(product);
+                    dbContext.SaveChanges();
+
+                    return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductDeltedFromShop);
+                }
             }
 
             Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
 
-            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductDeltedFromShop);
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter);            
         }
 
         public string UpdateProduct(List<string> parameters)

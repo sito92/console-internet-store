@@ -317,11 +317,11 @@ namespace CarAndHorseStore.Core.System
                     dbContext.Products.Remove(product);
                     dbContext.SaveChanges();
 
+                    Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductDeltedFromShop);
                 }
             }
-
-            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParameter);            
         }

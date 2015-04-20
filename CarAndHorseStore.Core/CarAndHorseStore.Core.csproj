@@ -65,6 +65,7 @@
     <Compile Include="System\Communicates\CommunicatesKinds.cs" />
     <Compile Include="System\Exeptions\InvalidValueExeption.cs" />
     <Compile Include="System\Helpers\FilterHelper.cs" />
+    <Compile Include="System\Helpers\ValidationHelper.cs" />
     <Compile Include="System\Role\RoleFactory.cs" />
     <Compile Include="System\Role\RoleKind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

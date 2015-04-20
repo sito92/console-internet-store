@@ -18,10 +18,10 @@ namespace CarAndHorseStore.Core.Extensions
             list.AddRange(repeat);
         }
 
-        public static string HorsesToString(List<Horse> horses)
-        {
-            if (horses == null || horses.Count == 0)
-                return emptyProductlist;
-        }
+        //public static string HorsesToString(List<Horse> horses)
+        //{
+        //    if (horses == null || horses.Count == 0)
+        //        return emptyProductlist;
+        //}
     }
 }

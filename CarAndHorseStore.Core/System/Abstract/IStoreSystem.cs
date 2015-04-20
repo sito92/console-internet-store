@@ -16,8 +16,9 @@ namespace CarAndHorseStore.Core.System.Abstract
          string ShowCarsBy(List<string> parameters);
          string ShowProductInfo(List<string> parameters);  
          string CreateUser(List<string> parameters);  
-         string AddProductToShop(List<string> parameters);  
-         string DeleteProduct(List<string> parameters);
+         string AddCarToShop(List<string> parameters);
+         string AddHorseToShop(List<string> parameters);   
+        string DeleteProduct(List<string> parameters);
          string UpdateProduct(List<string> parameters);  
          string Exit(List<string> parameters);
          string Cls(List<string> parameters);

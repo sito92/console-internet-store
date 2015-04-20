@@ -17,8 +17,7 @@ namespace CarAndHorseStore
         static void Main(string[] args)
         {
             var container = new NinjectContainer();
-
-
+            
             var commandParser = container.Get<CommandParser>();
             commandParser.Start();
             while (commandParser.IsParsing)

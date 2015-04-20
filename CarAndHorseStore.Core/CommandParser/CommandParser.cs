@@ -60,8 +60,10 @@ namespace CarAndHorseStore.Core.CommandParser
              new Command() { commandDelegate = storeSystem.ShowProductInfo, properParametersAmmount = new List<int>() { 1 } });
             comandsDictionary.Add("create",
              new Command() { commandDelegate = storeSystem.CreateUser, properParametersAmmount = new List<int>() { 3 } });
-            comandsDictionary.Add("addproduct",
-             new Command() { commandDelegate = storeSystem.AddProductToShop, properParametersAmmount = new List<int>() { 5 } }); 
+            comandsDictionary.Add("addhorse",
+             new Command() { commandDelegate = storeSystem.AddHorseToShop, properParametersAmmount = new List<int>() { 6 } });
+            comandsDictionary.Add("addcar",
+             new Command() { commandDelegate = storeSystem.AddCarToShop, properParametersAmmount = new List<int> { 7 } });
             comandsDictionary.Add("deleteproduct",
              new Command() { commandDelegate = storeSystem.DeleteProduct, properParametersAmmount = new List<int>() { 1 } });
             comandsDictionary.Add("updateproduct",

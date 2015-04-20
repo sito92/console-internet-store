@@ -8,9 +8,9 @@ namespace CarAndHorseStore.Core.Music
 {
     public class MusicManager
     {
-        public Dictionary<string, string> MusicDictionary = new Dictionary<string, string>();
+        public static Dictionary<string, string> MusicDictionary = new Dictionary<string, string>();
 
-        public MusicManager()
+        static MusicManager()
         {
             MusicDictionary.Add("LogInUser","witamy");
             MusicDictionary.Add("AddProductToCart", "wybranie_produktu");

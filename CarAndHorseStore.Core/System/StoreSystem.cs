@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Media;
 
@@ -37,8 +38,8 @@ namespace CarAndHorseStore.Core.System
         }
 
         public bool IsWorking { get; set; }
-      
-       
+
+
         public StoreSystem(IUserBaseRepository urepository, IProductRepository pRepository)
         {
             dbContext = new ShopDbContext();
@@ -96,7 +97,7 @@ namespace CarAndHorseStore.Core.System
 
         public string AddProductToCart(List<string> parameters)
         {
-            
+
             if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
             if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
@@ -122,16 +123,16 @@ namespace CarAndHorseStore.Core.System
             {
                 user.Cart = new Cart();
             }
-            
+
             var product = productRepository.FindBy(x => x.Id == id).FirstOrDefault();
             if (product == null) return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
-                       
-         
-           user.Cart.Products.AddRange(product,intParams[1]);
 
-           Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
-      
+
+            user.Cart.Products.AddRange(product, intParams[1]);
+
+            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToCart);
         }
 
@@ -160,22 +161,22 @@ namespace CarAndHorseStore.Core.System
             var user = (Client)loggedUser;
 
 
-            if (user.Cart == null || user.Cart.Products.Count()==0)
+            if (user.Cart == null || user.Cart.Products.Count() == 0)
             {
                 return CommunicatesFactory.GetCommunicate(CommunicatesKinds.EmptyCart);
             }
 
-            if (user.Cart.Products.Exists(x=>x.Id==id))
+            if (user.Cart.Products.Exists(x => x.Id == id))
             {
                 var product = user.Cart.Products.Find(x => x.Id == id);
                 for (int i = 0; i < ammount; i++)
                 {
-                    if (product!=null)
+                    if (product != null)
                     {
                         user.Cart.Products.Remove(product);
                     }
-                   
-                }                              
+
+                }
             }
             else
             {
@@ -188,7 +189,7 @@ namespace CarAndHorseStore.Core.System
 
         }
 
-        public string CheckOut(List<string> parameters)   
+        public string CheckOut(List<string> parameters)
         {
             if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
             if (CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
@@ -204,14 +205,14 @@ namespace CarAndHorseStore.Core.System
             var productLists = new List<ProductList>();
             foreach (var product in user.Cart.Products)
             {
-                if (productLists.Exists(x=>x.ProductId==product.Id))
+                if (productLists.Exists(x => x.ProductId == product.Id))
                 {
                     var productList = productLists.Find(x => x.ProductId == product.Id);
                     productList.Amount++;
                 }
                 else
                 {
-                    productLists.Add(new ProductList(){Amount = 1,Order = order,ProductId = product.Id});
+                    productLists.Add(new ProductList() { Amount = 1, Order = order, ProductId = product.Id });
                 }
             }
             dbContext.Orders.Add(order);
@@ -248,16 +249,56 @@ namespace CarAndHorseStore.Core.System
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.NewUserCreated);
         }
 
-        public string AddProductToShop(List<string> parameters)
+        public string AddCarToShop(List<string> parameters)
         {
             if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
             if (!CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
 
-            //
-            //Ciało właściwej funkcji
-            // 
+            var car = new Car()
+            {
+                Name = parameters[0],
+                Description = parameters[1],
+                ColorId = Convert.ToInt32(parameters[2]),
+                Price = Convert.ToInt32(parameters[3]),
+                BrandId = Convert.ToInt32(parameters[4]),
+                BodyTypeId = Convert.ToInt32(parameters[5]),
+                EngineTypeId = Convert.ToInt32(parameters[6])
+            };
+
+            if (ValidationHelper.isValid(car))
+            {
+                dbContext.Products.Add(car);
+                dbContext.SaveChanges();
+
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShop);
+            }
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShopFail);
+        }
+
+        public string AddHorseToShop(List<string> parameters)
+        {
+            if (CheckIfLogged(out checkCommunicate)) return checkCommunicate;
+            if (!CheckIfNotAdmin(out checkCommunicate)) return checkCommunicate;
+
+            var horse = new Horse()
+            {
+                Name = parameters[0],
+                Description = parameters[1],
+                ColorId = Convert.ToInt32(parameters[2]),
+                Price = Convert.ToInt32(parameters[3]),
+                BreedId = Convert.ToInt32(parameters[4]),
+                SexId = Convert.ToInt32(parameters[5]),
+            };
+            
+            if(ValidationHelper.isValid(horse))
+            { 
+            dbContext.Products.Add(horse);
+            dbContext.SaveChanges();
 
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShop);
+            }
+
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductAddedToShopFail);
         }
 
         public string DeleteProduct(List<string> parameters)
@@ -295,9 +336,8 @@ namespace CarAndHorseStore.Core.System
 
         public void Play(string methodName)
         {
-            var musicManager = new MusicManager();
 
-            var selectedSound = Resources.ResourceManager.GetStream(musicManager.MusicDictionary[methodName]);
+            var selectedSound = Resources.ResourceManager.GetStream(MusicManager.MusicDictionary[methodName]);
             player = new SoundPlayer(selectedSound);
             player.Play();
         }
@@ -354,18 +394,16 @@ namespace CarAndHorseStore.Core.System
                 var compareModel = FilterHelper.GetCompareModel(filtersDictionary);
 
                 var filtredHorses = GetFiltredHorses(compareModel);
-                    
+
                 if (filtredHorses.Count() == 0)
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
-                /*
+
                 var stringresult = filtredHorses.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.Found),
                     (current, horse) => current + (horse.ToString() + "\n"));
-                 */
 
-                var list = filtredHorses.ToList();
-                
-                return list.ListToString();
+                return stringresult;
+
             }
             catch (InvalidValueExeption ex)
             {
@@ -395,11 +433,11 @@ namespace CarAndHorseStore.Core.System
                 return ex.Message;
             }
         }
-        #endregion    
+        #endregion
         #region FiltredProductMethods
         private IEnumerable<Horse> GetFiltredHorses(ComapreModel compareModel)
         {
-            var filtredHorses = productRepository.FindBy(x => x==x).AsEnumerable().OfType<Horse>()
+            var filtredHorses = productRepository.FindBy(x => x == x).AsEnumerable().OfType<Horse>()
                 .Where(x => x.Id == (compareModel.Id == 0 ? x.Id : compareModel.Id))
                 .Where(
                     x =>
@@ -450,7 +488,7 @@ namespace CarAndHorseStore.Core.System
             filtersDictionary = FilterHelper.GetFiltersDictionary(parameters[0]);
             if (filtersDictionary == null)
             {
-               CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
+                CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorectKeyValue);
                 return true;
             }
 

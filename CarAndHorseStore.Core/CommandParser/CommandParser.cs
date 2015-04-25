@@ -13,7 +13,31 @@ namespace CarAndHorseStore.Core.CommandParser
     public class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
-        private const string connected = "Połączono";
+        private const string connectedMessage = "                                                              ::              \n" +
+                                         "                                                             NDNM:             \n" +
+                                         "                                                           ODDDNMNN            \n" +
+                                         "                                                               MMMN            \n" +
+                                         "                                                              NMMMMD           \n" +
+                                         "                                                             ~NMMMNO           \n" +
+                                         "                                                         ~DNNDNNMMM            \n" +
+                                         "                                                        8DNNNNNMMMM            \n" +
+                                         "                                                       D  MNNNNNNMN            \n" +
+                                         "                                                       D     88NNNND           \n" +
+                                         "                                                       ?      NDO8DNN          \n" +
+                                         "                                  ~=++=~                       MMNM8NND        \n" +
+                                         "                             ,,:,=I?7Z8DOI~8=                   DDDDNNNN       \n" +
+                                         "                       ,,,,,~~==?7?,.,:~.,,?=NO:..,               N8888NN8     \n" +
+                                         "                     ~OOOZ$I?++=++ODZNIM,:=8OI~I,:,,:.+~         OOZNONDNNN    \n" +
+                                         "                     Z$NNMNOZZ$$$$O8M7MDN+=++,$==,:=====,II      D8D8NNN  NN   \n" +
+                                         "                     Z.NOND8$~O8888DNM+:OM?ZZO$7?+=~===+?I7       DN 8D    NN  \n" +
+                                         "                      DDD+=:7$..ZZO8I?$=MMONMMNDMM=?O$?IMM7        D8 NN  8NND \n" +
+                                         "                          :7O88D8M=O8ND8DM+8NZ77D7?~,MMMD.$        DN  N       \n" +
+                                         "                                  ,+$NINNM,Z8DNNND8I8D88Z~       ZM    D       \n" +
+                                         "                                         ,~+I$$7I+~,            =     D        \n" +
+                                         "                                                                      O        \n" +
+                                         "                                                                               \n" +
+                                         "                                   Witaj w Car & Horse Shop                    \n";
+                                                                                                       
         private const string connecting = "Łączenie...";
         private const string notStarted = "System nie wystartował";
         public bool IsParsing { get; set; }
@@ -103,8 +127,8 @@ namespace CarAndHorseStore.Core.CommandParser
             Console.WriteLine(connecting);
             storeSystem.Start();
             SystemWorkingSwitch();
-            Console.WriteLine(connected);
-            
+            Console.Clear();
+            Console.WriteLine(connectedMessage);
             
         }
 

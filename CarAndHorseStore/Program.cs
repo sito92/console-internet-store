@@ -17,6 +17,11 @@ namespace CarAndHorseStore
         static void Main(string[] args)
         {
             var container = new NinjectContainer();
+            Console.BufferHeight = 300;
+            Console.BufferWidth=120;
+            Console.WindowHeight = 50;
+            Console.WindowWidth=120;
+            Console.Title = "Car & Horse Shop";
             
             var commandParser = container.Get<CommandParser>();
             commandParser.Start();

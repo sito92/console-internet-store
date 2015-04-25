@@ -29,8 +29,7 @@ namespace CarAndHorseStore.Core.System
         private IOrderRepository orderRepository;
         private ShopDbContext dbContext;
         private SoundPlayer player;
-        private const string cleaned = "Wyczyszczono";
-        private const string somePeasantStoppedMusic = "Zatrzymano. Troche szkoda";
+
 
         public void Start()
         {
@@ -87,6 +86,11 @@ namespace CarAndHorseStore.Core.System
             return loggedUser != null
                 ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAs) + loggedUser.Name
                 : CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
+        }
+
+        public string GetUserNameToDisplay()
+        {
+            return loggedUser != null ? loggedUser.Name : "Niezalogowany";
         }
 
         public string Exit(List<string> parameters = null)
@@ -350,7 +354,7 @@ namespace CarAndHorseStore.Core.System
         public string Stop(List<string> parameters)
         {
             player.Stop();
-            return somePeasantStoppedMusic;
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.MusicComunikatesStop);
         }
         #endregion
         #region CheckMethods
@@ -386,7 +390,7 @@ namespace CarAndHorseStore.Core.System
             Console.Clear();
 
             Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
-            return cleaned;
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.Cleaned);
         }
 
         public string ShowHorsesBy(List<string> parameters)
@@ -404,7 +408,7 @@ namespace CarAndHorseStore.Core.System
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
 
-                var stringresult = filtredHorses.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.Found),
+                var stringresult = filtredHorses.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.FoundHorses),
                     (current, horse) => current + (horse.ToString() + "\n"));
 
                 return stringresult;
@@ -412,7 +416,7 @@ namespace CarAndHorseStore.Core.System
             }
             catch (InvalidValueExeption ex)
             {
-                return ex.Message;
+                return "C&H Shop > " + ex.Message;
             }
         }
         public string ShowCarsBy(List<string> parameters)
@@ -429,13 +433,13 @@ namespace CarAndHorseStore.Core.System
                 if (filtredCars.Count() == 0)
                     return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ProductNotFound);
 
-                var stringresult = filtredCars.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.Found),
+                var stringresult = filtredCars.Aggregate(CommunicatesFactory.GetCommunicate(CommunicatesKinds.FoundCars),
                     (current, car) => current + (car.ToString() + "\n"));
                 return stringresult;
             }
             catch (InvalidValueExeption ex)
             {
-                return ex.Message;
+                return "C&H Shop > " + ex.Message;
             }
         }
         #endregion
@@ -501,6 +505,5 @@ namespace CarAndHorseStore.Core.System
             CheckCommunicate = CommunicatesFactory.GetCommunicate(CommunicatesKinds.InvalidAttribute);
             return true;
         }
-
     }
 }

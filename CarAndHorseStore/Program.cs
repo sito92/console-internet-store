@@ -28,7 +28,6 @@ namespace CarAndHorseStore
             while (commandParser.IsParsing)
             {
                 Console.WriteLine(commandParser.ParseCommand(Console.ReadLine()));
-
                 if (!commandParser.IsParsing)
                 {
                     Console.ReadKey();

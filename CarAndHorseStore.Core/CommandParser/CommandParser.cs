@@ -40,6 +40,8 @@ namespace CarAndHorseStore.Core.CommandParser
                                                                                                        
         private const string connecting = "Łączenie...";
         private const string notStarted = "System nie wystartował";
+        private const string unauthorizetUserOnSystemStart = "Niezalogowany> ↓ ";  //Czytałem ostanio o wzorcach projektowych. Jeden szczzególnie mi się spodobał KISS
+        private const string userPrompt = "> ↓ ";
         public bool IsParsing { get; set; }
         //private IRepository rep;
 
@@ -112,14 +114,14 @@ namespace CarAndHorseStore.Core.CommandParser
 
             if (!IsCommandOperate(keyWord))
             {
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate);
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.CommandNotCooperate) + "\n" + storeSystem.GetUserNameToDisplay() + userPrompt;
             }
 
             if (!comandsDictionary[keyWord].IsProperParametersAmmount(parameters.Count))
-                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount);
+                return CommunicatesFactory.GetCommunicate(CommunicatesKinds.IncorrectParametersAmmount) + "\n" + storeSystem.GetUserNameToDisplay() + userPrompt;
             var result = comandsDictionary[keyWord].commandDelegate(parameters);
             SystemWorkingSwitch();
-            return result;
+            return result + "\n" + storeSystem.GetUserNameToDisplay() + userPrompt;
         }
 
         public void Start()
@@ -129,6 +131,7 @@ namespace CarAndHorseStore.Core.CommandParser
             SystemWorkingSwitch();
             Console.Clear();
             Console.WriteLine(connectedMessage);
+            Console.WriteLine(unauthorizetUserOnSystemStart);
             
         }
 

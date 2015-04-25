@@ -34,7 +34,8 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         InvalidHorseAttribute,
         InvalidCarAttribute,
         LoggedAsAdmin,       
-        Found,
+        FoundCars,
+        FoundHorses,
         InvalidAttribute,
         UserAlreadyExist,
         PasswordAreDifferent,
@@ -45,7 +46,9 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         NewUserCreatedFail,
         ProductDeltedFromShopFail,
         UpdatedProductInfoFail,
-        ProductAddedToShopFail
+        ProductAddedToShopFail,
+        MusicComunikatesStop,
+        Cleaned
 
     }
 }

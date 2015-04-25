@@ -35,8 +35,15 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.EmptyCart, "Koszyk jest pusty."},
             {CommunicatesKinds.InvalidHorseAttribute, "Nieobsługiwany atrybut konia."},
             {CommunicatesKinds.InvalidCarAttribute, "Nieobsługiwany atrybut samochodu."},
-            {CommunicatesKinds.LoggedAsAdmin,"Nie można wykonać akcji, zalogowano jako admin."},                
-            {CommunicatesKinds.Found,"Znaleziono: \n"},
+            {CommunicatesKinds.LoggedAsAdmin,"Nie można wykonać akcji, zalogowano jako admin."},
+            {
+                CommunicatesKinds.FoundCars,"Znaleziono: \n"+
+                                            "ID | Nazwa | Opis | Cena | Kolor | Marka | Typ nadwozia | Liczba cylindrów | Pojemność silnika \n"
+            },
+            {
+                CommunicatesKinds.FoundHorses,"Znaleziono: \n" +
+                                            "ID | Nazwa | Opis | Cena | Kolor | Rasa | Płeć \n"
+                                            },
             {CommunicatesKinds.IncorectKeyValue,"Nieprawidłowa para wartość-klucz."},
             {CommunicatesKinds.InvalidAttribute,"Nieprawidłowy atrubut."},
             {CommunicatesKinds.UserAlreadyExist,"Podana nazwa użytkownika jest zajęta. "},
@@ -48,13 +55,15 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
             {CommunicatesKinds.NewUserCreatedFail,"Dodanie nowego użytkownika nie powiodło się. Proszę spróbować ponownie. "},
             {CommunicatesKinds.ProductAddedToShopFail, "Dodanie produktu do sklepu nie powiodło się. Proszę spróbować ponownie. "},
             {CommunicatesKinds.ProductDeltedFromShopFail, "Usunięcie produktu ze sklepu nie powiodło się. Proszę spróbować ponownie. "},
-            {CommunicatesKinds.UpdatedProductInfoFail, "Aktualizacja informacji o produkcie nie powiodła się. Proszę spróbować ponownie. "}
+            {CommunicatesKinds.UpdatedProductInfoFail, "Aktualizacja informacji o produkcie nie powiodła się. Proszę spróbować ponownie. "},
+            {CommunicatesKinds.MusicComunikatesStop, "Zatrzymano komunikaty głosowe. Troche szkoda. "},
+            {CommunicatesKinds.Cleaned, "Wyszyszczono ekran. "}
 
         };
 
         public static string GetCommunicate(CommunicatesKinds kind)
         {
-            return communicatesDictionary.ContainsKey(kind) ? communicatesDictionary[kind] : "Błąd";
+            return communicatesDictionary.ContainsKey(kind) ? "C&H Shop: " + communicatesDictionary[kind] : "C&H Shop: Błąd";
         }
 
     }

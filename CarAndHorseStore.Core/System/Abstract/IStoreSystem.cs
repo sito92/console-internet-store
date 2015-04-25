@@ -18,15 +18,15 @@ namespace CarAndHorseStore.Core.System.Abstract
          string CreateUser(List<string> parameters);  
          string AddCarToShop(List<string> parameters);
          string AddHorseToShop(List<string> parameters);   
-        string DeleteProduct(List<string> parameters);
+         string DeleteProduct(List<string> parameters);
          string UpdateProduct(List<string> parameters);  
          string Exit(List<string> parameters);
          string Cls(List<string> parameters);
+         string GetUserNameToDisplay();
             void Start();
          bool IsWorking { get; set; }
-
-        void Play(string parameters);
-        string Stop(List<string> parameters);
+         void Play(string parameters);
+         string Stop(List<string> parameters);
 
     }
 }

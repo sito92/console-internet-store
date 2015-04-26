@@ -48,7 +48,8 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
         UpdatedProductInfoFail,
         ProductAddedToShopFail,
         MusicComunikatesStop,
-        Cleaned
+        Cleaned,
+        ShowHelp
 
     }
 }

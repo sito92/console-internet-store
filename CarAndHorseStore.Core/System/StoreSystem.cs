@@ -88,11 +88,6 @@ namespace CarAndHorseStore.Core.System
                 : CommunicatesFactory.GetCommunicate(CommunicatesKinds.NotLogged);
         }
 
-        public string GetUserNameToDisplay()
-        {
-            return loggedUser != null ? loggedUser.Name : "Niezalogowany";
-        }
-
         public string Exit(List<string> parameters = null)
         {
 
@@ -223,6 +218,7 @@ namespace CarAndHorseStore.Core.System
             dbContext.Orders.Add(order);
             dbContext.ProductLists.AddRange(productLists);
             dbContext.SaveChanges();
+            user.Cart = null; // aby usunąć zawrtość koszyka po zakupie
             //
             //Ciało właściwej funkcji
             // 
@@ -391,6 +387,16 @@ namespace CarAndHorseStore.Core.System
 
             Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
             return CommunicatesFactory.GetCommunicate(CommunicatesKinds.Cleaned);
+        }
+
+        public string GetUserNameToDisplay()
+        {
+            return loggedUser != null ? loggedUser.Name : "Niezalogowany";
+        }
+
+        public string Help(List<string> parameters)
+        {
+            return CommunicatesFactory.GetCommunicate(CommunicatesKinds.ShowHelp);
         }
 
         public string ShowHorsesBy(List<string> parameters)

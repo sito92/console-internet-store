@@ -22,6 +22,7 @@ namespace CarAndHorseStore.Core.System.Abstract
          string UpdateProduct(List<string> parameters);  
          string Exit(List<string> parameters);
          string Cls(List<string> parameters);
+         string Help(List<string> parameters);
          string GetUserNameToDisplay();
             void Start();
          bool IsWorking { get; set; }

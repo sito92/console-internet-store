@@ -64,7 +64,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
                                             "          login          |     nazwa hasło     | Logowanie do systemu            | Niezalogowany | login Marek W$7!@\n" +
                                            // "          . . . . . . . . . . . . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\n" +
                                             "          logout         |          -          | Wylogowanie z systemu           | Admin/Klient  | logout \n" +
-                                            "          whoiam         |          -          | Informacja o loginie            | Admin/Klient  | whoiam \n" +
+                                            "          whoami         |          -          | Informacja o loginie            | Admin/Klient  | whoiam \n" +
                                             "          stop           |          -          | Zatrzymanie komunikatów         | Wszyscy       | stop\n" +
                                             "          showcart       |          -          | Wyswietlenie zawartości koszyka | Klient        | showcart \n" +
                                             "          add            | nr_produktu liczba  | Dodanie produktu/ów do koszytka | Klient        | add bmw12 1\n" +
@@ -79,7 +79,7 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
                                             "          exit           |          -          | Wyjście ze sklepu               | Wszyscy       | exit \n" +
                                             "          create         | nazwa haslo haslo   | Stworzenie konta klienta        | Admin         | create Al qw! qw!\n" +
                                             "          addproduct     | nazwa nr_produktu   | Dodanie produktu do sklepu      | Admin         | addproduct BMW_M4 \n" +
-                                            "                         | kategoria cana opis |                                 |               | BMW4 Car 85000 Cool\n" +
+                                            "                         | kategoria cena opis |                                 |               | BMW4 Car 85000 Cool\n" +
                                             "          updateproduct  | nr_produktu (Name|  | Aktualizacja informacji         | Admin         | updateproduct BMW4 \n" +
                                             "                         | Price|Description)  | o produkcie                     |               | cena 82000 \n" +
                                             "                         | nowa wartość        |                                 |               |            \n" +

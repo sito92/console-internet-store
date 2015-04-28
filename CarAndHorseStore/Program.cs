@@ -19,7 +19,7 @@ namespace CarAndHorseStore
             var container = new NinjectContainer();
             Console.BufferHeight = 300;
             Console.BufferWidth=120;
-            Console.WindowHeight = 50;
+            Console.WindowHeight = 39;
             Console.WindowWidth=120;
             Console.Title = "Car & Horse Shop";
             

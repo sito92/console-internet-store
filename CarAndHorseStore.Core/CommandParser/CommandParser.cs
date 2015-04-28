@@ -13,7 +13,7 @@ namespace CarAndHorseStore.Core.CommandParser
     public class CommandParser : ICommandParser
     {
         private IStoreSystem storeSystem;
-        private const string connectedMessage = "                                                              ::              \n" +
+        private const string connectedMessage = "v0.15.4.28 Work In Progress                                    ::              \n" +
                                          "                                                             NDNM:             \n" +
                                          "                                                           ODDDNMNN            \n" +
                                          "                                                               MMMN            \n" +

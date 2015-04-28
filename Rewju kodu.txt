@@ -1,0 +1,13 @@
+Klasa ComandLine pisana z ma³ej litery
+Zagadka 72'óch (coœ nie wiadomo sk¹d)
+Execiute zamieniæ na statyczn¹ metodê
+Zamieniæ switch na s³ownik
+Bardzo du¿aRedundancja kodu wszêdzie
+Plik nazywa siê Product.cs natomiast zawiera interface Product
+U¿ywanie Stringa zamiast stringa
+W klasie MySql pola nie s¹ constant lub readonly
+TightCoupling
+Niekonsekwencja w sposobie nazywania metod
+Bezsensowny interfejs IUser(nic po nim nie dziedziczy)
+Nieskoñczona pêtla brak mo¿liwoœci wyjœcia (?)
+Niski poziom abstrakcji

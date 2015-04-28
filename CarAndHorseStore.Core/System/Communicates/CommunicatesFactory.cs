@@ -78,8 +78,10 @@ namespace CarAndHorseStore.Core.CommandParser.Communicates
                                             "          cls            |          -          | Wyszyszczenie ekranu            | Wszyscy       | cls \n" +
                                             "          exit           |          -          | Wyjście ze sklepu               | Wszyscy       | exit \n" +
                                             "          create         | nazwa haslo haslo   | Stworzenie konta klienta        | Admin         | create Al qw! qw!\n" +
-                                            "          addproduct     | nazwa nr_produktu   | Dodanie produktu do sklepu      | Admin         | addproduct BMW_M4 \n" +
-                                            "                         | kategoria cena opis |                                 |               | BMW4 Car 85000 Cool\n" +
+                                            "          addcar         | nazwa opis kolor    | Dodanie samochodu do sklepu     | Admin         | addcar BMW_M4 super \n" +
+                                            "                         | cena marka nadw sil |                                 |               | black 90000 BMW sedan 1.5\n" +
+                                            "          addhorse       | nazwa opis kolor    | Dodanie konia do sklepu         | Admin         | addhorse konik palomino \n" +
+                                            "                         | cena rasa płeć      |                                 |               | 60000 arab male\n" +
                                             "          updateproduct  | nr_produktu (Name|  | Aktualizacja informacji         | Admin         | updateproduct BMW4 \n" +
                                             "                         | Price|Description)  | o produkcie                     |               | cena 82000 \n" +
                                             "                         | nowa wartość        |                                 |               |            \n" +

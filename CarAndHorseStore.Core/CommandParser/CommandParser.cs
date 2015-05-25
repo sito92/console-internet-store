@@ -132,11 +132,15 @@ namespace CarAndHorseStore.Core.CommandParser
             storeSystem.Start();
             SystemWorkingSwitch();
             Console.Clear();
-            Console.WriteLine(connectedMessage);
-            Console.WriteLine(unauthorizetUserOnSystemStart);
+            Console.WriteLine(WelcomeMessage());
+
             
         }
 
+        public string WelcomeMessage()
+        {
+            return connectedMessage + "\n" + unauthorizetUserOnSystemStart;
+        }
         private bool IsCommandOperate(string keyword)
         {
             return comandsDictionary.ContainsKey(keyword);

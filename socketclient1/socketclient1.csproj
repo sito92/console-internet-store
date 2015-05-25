@@ -4,28 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{158324AE-DFE5-4AF7-BB3A-B8CC12CEA539}</ProjectGuid>
+    <ProjectGuid>{8C80E70D-29D6-41AE-8DCB-5D699EC0AB37}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarAndHorseStore</RootNamespace>
-    <AssemblyName>CarAndHorseStore</AssemblyName>
+    <RootNamespace>socketclient1</RootNamespace>
+    <AssemblyName>socketclient1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,17 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,40 +41,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\NinjectContainer.cs" />
+    <Compile Include="Infrastructure\ClientActionManager.cs" />
+    <Compile Include="Music\MusicManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    <None Include="Resources\czyszczenie_ekranu.wav" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarAndHorseStore.Core\CarAndHorseStore.Core.csproj">
+    <None Include="Resources\edycja_produktu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\informacje_o_produkcie.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kim_jestem.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuniecie_produktu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wybranie_produktu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wylogowanie.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zawartosc_koszyka.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Music\Tracks\czyszczenie_ekranu.wav" />
+    <Content Include="Music\Tracks\edycja_produktu.wav" />
+    <Content Include="Music\Tracks\informacje_o_produkcie.wav" />
+    <Content Include="Music\Tracks\kim_jestem.wav" />
+    <Content Include="Music\Tracks\koniec.wav" />
+    <Content Include="Music\Tracks\usuniecie_produktu.wav" />
+    <Content Include="Music\Tracks\witamy.wav" />
+    <Content Include="Music\Tracks\wybranie_produktu.wav" />
+    <Content Include="Music\Tracks\wylogowanie.wav" />
+    <Content Include="Music\Tracks\zawartosc_koszyka.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ConsoleStore\CarAndHorseStore.Core\CarAndHorseStore.Core.csproj">
       <Project>{6b44d92b-39f0-4401-89e1-de0b3e027470}</Project>
       <Name>CarAndHorseStore.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CarAndHorseStore.Domain\CarAndHorseStore.Domain.csproj">
+    <ProjectReference Include="..\..\ConsoleStore\CarAndHorseStore.Domain\CarAndHorseStore.Domain.csproj">
       <Project>{2bb3c695-5817-405b-bb2b-5f8473613546}</Project>
       <Name>CarAndHorseStore.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ConsoleStore\CarAndHorseStore\CarAndHorseStore.csproj">
+      <Project>{158324ae-dfe5-4af7-bb3a-b8cc12cea539}</Project>
+      <Name>CarAndHorseStore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

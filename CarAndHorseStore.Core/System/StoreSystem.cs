@@ -81,7 +81,7 @@ namespace CarAndHorseStore.Core.System
 
         public string WhoAmI(List<string> parameters)
         {
-            Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
+           Play(global::System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             return loggedUser != null
                 ? CommunicatesFactory.GetCommunicate(CommunicatesKinds.LoggedAs) + loggedUser.Name

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{158324AE-DFE5-4AF7-BB3A-B8CC12CEA539}</ProjectGuid>
+    <ProjectGuid>{0781622D-D3CB-4AAB-BC79-0B630171087C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CarAndHorseStore</RootNamespace>
-    <AssemblyName>CarAndHorseStore</AssemblyName>
+    <RootNamespace>socketserver1</RootNamespace>
+    <AssemblyName>socketserver1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,6 +23,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -47,14 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -66,13 +64,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\NinjectContainer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ConsoleStore\CarAndHorseStore.Core\CarAndHorseStore.Core.csproj">
+      <Project>{6b44d92b-39f0-4401-89e1-de0b3e027470}</Project>
+      <Name>CarAndHorseStore.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConsoleStore\CarAndHorseStore.Domain\CarAndHorseStore.Domain.csproj">
+      <Project>{2bb3c695-5817-405b-bb2b-5f8473613546}</Project>
+      <Name>CarAndHorseStore.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConsoleStore\CarAndHorseStore\CarAndHorseStore.csproj">
+      <Project>{158324ae-dfe5-4af7-bb3a-b8cc12cea539}</Project>
+      <Name>CarAndHorseStore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Localdatabase.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Localdatabase_log.ldf">
+      <DependentUpon>Localdatabase.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -90,16 +110,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CarAndHorseStore.Core\CarAndHorseStore.Core.csproj">
-      <Project>{6b44d92b-39f0-4401-89e1-de0b3e027470}</Project>
-      <Name>CarAndHorseStore.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CarAndHorseStore.Domain\CarAndHorseStore.Domain.csproj">
-      <Project>{2bb3c695-5817-405b-bb2b-5f8473613546}</Project>
-      <Name>CarAndHorseStore.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

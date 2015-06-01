@@ -29,11 +29,10 @@ namespace socketserver1
 
             while (true)
             {
-                //blocks until a client has connected to the server
+                
                 TcpClient client = this.tcpListener.AcceptTcpClient();
 
-                //create a thread to handle communication 
-                //with connected client
+
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
                 clientThread.Start(client);
             }
@@ -58,22 +57,22 @@ namespace socketserver1
 
                 try
                 {
-                    //blocks until a client sends a message
+
                     bytesRead = clientStream.Read(message, 0, 4096);
                 }
                 catch
                 {
-                    //a socket error has occured
+
                     break;
                 }
 
                 if (bytesRead == 0)
                 {
-                    //the client has disconnected from the server
+
                     break;
                 }
 
-                //message has successfully been received
+
                
                 var messageString = encoding.GetString(message, 0, bytesRead);
                 Console.WriteLine(messageString);
